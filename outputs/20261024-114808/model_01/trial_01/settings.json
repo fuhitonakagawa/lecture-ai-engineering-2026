@@ -1,0 +1,25 @@
+{
+  "model": "gpt-6.1-sol",
+  "trial": 1,
+  "command": [
+    "codex",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--skip-git-repo-check",
+    "--sandbox",
+    "read-only",
+    "--color",
+    "never",
+    "--json",
+    "-c",
+    "web_search=\"disabled\"",
+    "-c",
+    "project_doc_max_bytes=0",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"medium\"",
+    "-"
+  ]
+}

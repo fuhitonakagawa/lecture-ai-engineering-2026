@@ -1,0 +1,15 @@
+{
+  "model": "gpt-6.1-sol",
+  "trial": 2,
+  "status": "success",
+  "exit_code": 0,
+  "usage": {
+    "input_tokens": 20218,
+    "cached_input_tokens": 0,
+    "output_tokens": 311,
+    "reasoning_output_tokens": 0
+  },
+  "tool_types": [],
+  "elapsed_seconds": 9.846,
+  "directory": "model_01/trial_02"
+}

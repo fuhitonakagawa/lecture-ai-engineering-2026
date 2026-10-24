@@ -12,7 +12,7 @@ import sys
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from tempfile import TemporaryDirectory, mkdtemp
+from tempfile import TemporaryDirectory
 from time import perf_counter
 from zoneinfo import ZoneInfo
 
@@ -304,10 +304,16 @@ def prepare_output(
 
     Returns:
         出力先と、全試行に渡す入力全文。
+
+    Raises:
+        FileExistsError: 同じ日時の出力先が存在する場合。
     """
     output_root.mkdir(parents=True, exist_ok=True)
-    prefix = datetime.now(ZoneInfo("Asia/Tokyo")).strftime("%Y%m%d-%H%M%S-")
-    output_dir = Path(mkdtemp(prefix=prefix, dir=output_root))
+    directory_name = datetime.now(ZoneInfo("Asia/Tokyo")).strftime(
+        "%Y%m%d-%H%M%S"
+    )
+    output_dir = output_root / directory_name
+    output_dir.mkdir()
     prompt = f"{ANSWER_INSTRUCTIONS}\n質問：{settings.question}\n"
     (output_dir / "question.txt").write_text(
         settings.question + "\n", encoding="utf-8"

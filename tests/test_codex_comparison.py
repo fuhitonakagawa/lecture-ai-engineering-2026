@@ -3,8 +3,10 @@
 import json
 import subprocess
 from collections.abc import Sequence
+from datetime import datetime
 from pathlib import Path
 from unittest.mock import Mock
+from zoneinfo import ZoneInfo
 
 import pytest
 
@@ -268,6 +270,12 @@ def test_multiple_experiments_keep_previous_outputs(
     """連続実行で既存の回答を上書きしない。"""
     monkeypatch.setenv("CODEX_COMPARE_REPEATS", "1")
     settings = comparison.load_settings(env_path)
+    clock = Mock()
+    clock.now.side_effect = [
+        datetime(2026, 1, 2, 3, 4, 5, tzinfo=ZoneInfo("Asia/Tokyo")),
+        datetime(2026, 1, 2, 3, 4, 6, tzinfo=ZoneInfo("Asia/Tokyo")),
+    ]
+    monkeypatch.setattr("app.codex_comparison.datetime", clock)
     outputs = []
     for answer in ("回答A", "回答B"):
         fake_cli(
@@ -278,9 +286,44 @@ def test_multiple_experiments_keep_previous_outputs(
         outputs.append(
             comparison.run_comparison(settings, tmp_path / "outputs")
         )
-    assert outputs[0] != outputs[1]
+    assert [output.name for output in outputs] == [
+        "20260102-030405",
+        "20260102-030406",
+    ]
     assert (outputs[0] / "model_01/trial_01/answer.md").read_text() == "回答A"
     assert (outputs[1] / "model_01/trial_01/answer.md").read_text() == "回答B"
+
+
+def test_same_second_keeps_existing_answers(
+    env_path: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """同じ秒の再実行は既存の回答を上書きせずにエラーになる。"""
+    monkeypatch.setenv("CODEX_COMPARE_REPEATS", "1")
+    settings = comparison.load_settings(env_path)
+    clock = Mock()
+    clock.now.return_value = datetime(
+        2026, 1, 2, 3, 4, 5, tzinfo=ZoneInfo("Asia/Tokyo")
+    )
+    monkeypatch.setattr("app.codex_comparison.datetime", clock)
+    fake_cli(
+        monkeypatch,
+        [subprocess.CompletedProcess([], 0, response_events("回答A"), "")] * 2,
+    )
+    output = comparison.run_comparison(settings, tmp_path / "outputs")
+    saved_files = {
+        path.relative_to(output): path.read_bytes()
+        for path in output.rglob("*")
+        if path.is_file()
+    }
+    runner = fake_cli(monkeypatch, [])
+    with pytest.raises(FileExistsError):
+        comparison.run_comparison(settings, tmp_path / "outputs")
+    assert runner.call_count == 1
+    assert saved_files == {
+        path.relative_to(output): path.read_bytes()
+        for path in output.rglob("*")
+        if path.is_file()
+    }
 
 
 def test_missing_cli_fails_before_trials(

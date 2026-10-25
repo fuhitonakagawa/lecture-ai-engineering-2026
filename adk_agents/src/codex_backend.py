@@ -208,7 +208,9 @@ def validate_decision(
 ) -> ModelDecision:
     """外部ツール利用と、関数名・引数・最終回答の形式を検証する。"""
     if response.tool_types:
-        raise CodexFailure("external_tools_used", {})
+        raise CodexFailure(
+            "external_tools_used", {"tool_types": list(response.tool_types)}
+        )
     decision = ModelDecision.model_validate_json(response.answer)
     allowed = {tool["name"] for tool in tools}
     for call in decision.tool_calls:

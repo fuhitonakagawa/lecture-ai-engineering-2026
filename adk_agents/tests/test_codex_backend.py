@@ -66,6 +66,7 @@ def test_builtin_tool_usage_is_excluded(monkeypatch: pytest.MonkeyPatch) -> None
     backend = CodexBackend(CodexSettings("test-model", "low", 10, 1, 2, 0))
     with pytest.raises(RuntimeError, match="アプリ外"):
         asyncio.run(backend.complete("", [], []))
+    assert backend.records[0]["diagnostics"]["tool_types"] == ["command_execution"]
 
 
 def test_exec_uses_schema_stdin_and_read_only_sandbox(

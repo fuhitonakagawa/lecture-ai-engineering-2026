@@ -15,6 +15,7 @@ from src.config.settings import (
     required_setting,
 )
 from src.pipeline import ExperimentCase, run_case, run_comparison, save_inspection
+from src.quiz_validation import verify_quiz
 
 
 async def run() -> None:
@@ -23,7 +24,9 @@ async def run() -> None:
     configure_logging()
     action = required_setting("MCP_ACTION")
     timeout = positive_setting("MCP_TIMEOUT_SECONDS")
-    if action == "compare":
+    if action == "verify_quiz":
+        directory = await verify_quiz(timeout)
+    elif action == "compare":
         directory = await run_comparison(
             load_codex_settings(), timeout, required_setting("AIE_RUN_DIRECTORY")
         )
@@ -56,7 +59,9 @@ async def run() -> None:
                 f"requests={record['requests']} cli_attempts={record['cli_attempts']}"
             )
         else:
-            raise ValueError("MCP_ACTIONはinspect・ask・compareを指定してください。")
+            raise ValueError(
+                "MCP_ACTIONはinspect・ask・compare・verify_quizを指定してください。"
+            )
     print("出力先:", directory)
 
 

@@ -11,6 +11,7 @@ from zoneinfo import ZoneInfo
 from pydantic_ai.messages import (
     ModelMessage,
     ModelMessagesTypeAdapter,
+    RetryPromptPart,
     ToolCallPart,
     ToolReturnPart,
 )
@@ -85,6 +86,10 @@ def extract_trace(messages: list[ModelMessage]) -> list[dict[str, Any]]:
             elif isinstance(part, ToolReturnPart):
                 trace.append(
                     {"kind": "return", "name": part.tool_name, "content": part.content}
+                )
+            elif isinstance(part, RetryPromptPart):
+                trace.append(
+                    {"kind": "retry", "name": part.tool_name, "content": part.content}
                 )
     return trace
 

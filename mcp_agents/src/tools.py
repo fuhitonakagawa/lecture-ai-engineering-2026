@@ -8,6 +8,8 @@ import json
 from functools import cache
 from typing import Any
 
+from pydantic import StrictInt
+
 from src.config.settings import PROJECT_ROOT
 
 DATA_DIR = PROJECT_ROOT / "data"
@@ -83,21 +85,23 @@ def get_lecture_summary(lecture: int) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def make_quiz(lecture: int) -> str:
+def make_quiz(lecture: StrictInt) -> str:
     """指定した回の理解を確かめる確認問題と、その正解を返す。
 
     「第2回から確認問題を1問出して」のように、復習や理解度確認を
     求められたときに使う。正解は出題後の答え合わせにも使える。
 
     Args:
-        lecture: 問題の対象となる講義回。1始まりの整数。
+        lecture: 問題の対象となる講義回。1始まりの整数。文字列や真偽値は不可。
 
     Returns:
         問題、用語、正解、講義回のJSON。該当する回がなければ案内文。
     """
     candidates = [term for term in load_glossary() if term["lecture"] == lecture]
     if not candidates:
-        return f"第{lecture}回の用語がありません。別の回を指定してください。"
+        available = sorted({term["lecture"] for term in load_glossary()})
+        choices = ", ".join(str(value) for value in available)
+        return f"第{lecture}回の用語がありません。用意されている回: {choices}。別の回を指定してください。"
     term = candidates[0]
     return json.dumps(
         {

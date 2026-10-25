@@ -97,6 +97,31 @@ uv run python -m src.main
 既製サーバーのHTML本文抽出にはNode.jsとreadabilipyの補助処理が必要で、npmキャッシュへの書き込み権限も必要となる。
 Markdown版ではHTML変換を伴わず、取得したテキストをモデルへ渡せる。
 
+### 2.5. 実装課題：確認問題の入力検証
+
+`make_quiz` は整数の講義回を受け取る。収録された回は問題と正解を返し、未収録の回は利用可能な回の案内を返す。
+文字列や真偽値は整数へ変換せず、MCPの型エラーとする。
+
+```bash
+MCP_ACTION=verify_quiz uv run python -m src.main
+```
+
+この操作は実際のstdioサーバーに接続するが、モデルAPIは呼ばない。
+`TestModel` で正常な回と未収録の回、`FunctionModel` で型不正の入力を指定し、モデルに届くメッセージを `quiz_validation.json` に保存する。
+
+| 入力 | MCPの応答 | モデルに渡るメッセージ |
+| --- | --- | --- |
+| `lecture=2` | 問題と正解、`isError=false` | `ToolReturnPart` |
+| `lecture=99`などの未収録回 | 利用可能な回の案内、`isError=false` | `ToolReturnPart` |
+| 文字列・真偽値 | 型検証エラー、`isError=true` | `RetryPromptPart` |
+
+自然言語の回答を確認する場合は、単独質問を使う。
+
+```bash
+MCP_ACTION=ask MCP_QUESTION='第2回の内容から確認問題を1問出して' uv run python -m src.main
+MCP_ACTION=ask MCP_QUESTION='第99回の内容から確認問題を1問出して' uv run python -m src.main
+```
+
 ## 🔁 3. 基礎課題の比較
 
 ### 3.1. Streamable HTTPのサーバー
@@ -174,7 +199,7 @@ docstringやデータを編集して比較する場合は、新しい実験を�
 
 | 変数 | 用途 |
 | --- | --- |
-| `MCP_ACTION` | `inspect` / `ask` / `compare` |
+| `MCP_ACTION` | `inspect` / `ask` / `compare` / `verify_quiz` |
 | `MCP_CLIENT_MODE` | `direct` / `mcp` |
 | `MCP_CONFIG_FILE` | `config/` 内の接続設定 |
 | `MCP_DESCRIPTION_STYLE` | 直接登録・自作サーバーの説明。`brief` / `detailed` |
@@ -195,6 +220,7 @@ docstringやデータを編集して比較する場合は、新しい実験を�
 - **一覧表示**：`tools.json` にモデルが受け取る名前・説明文・引数を保存する。
 - **比較実験**：`settings.json`、`plan.json`、`summary.json` に共通条件・接続設定・各ケースの成否を保存する。
 - **各ケース**：`tools.json`、`answer.md`、`trace.json`、`messages.json`、`model_requests.json`、`execution_settings.json`、`result.json` を保存する。
+- **実装検証**：`quiz_validation.json` に実MCPの返却とテスト用モデルのtraceを保存する。`real_llm_used=false` を明示する。
 - **要求回数**：`requests` はフレームワークのモデル要求数、`cli_attempts` は再試行を含むCodex execの起動数。MCPの通信回数とは異なる。
 - **成否**：回答の取得に成功したことと、正しいツール・内容で回答できたことを分けて評価する。失敗結果やテスト用のモデル応答を成功した実測値へ置き換えない。
 
@@ -227,6 +253,7 @@ mcp_agents/
 │   ├── client.py                # 接続設定・ツール一覧
 │   ├── pipeline.py              # 質問・比較・結果保存
 │   ├── profiles.py              # docstringの比較条件
+│   ├── quiz_validation.py       # 確認問題の正常・異常入力の観測
 │   ├── tools.py                 # 3つの学習支援ツール
 │   ├── codex_backend.py         # Codex CLIの呼び出し
 │   ├── codex_model.py           # Pydantic AIのモデル変換
@@ -247,6 +274,7 @@ mcp_agents/
 │   ├── test_codex_backend.py
 │   ├── test_mcp.py
 │   ├── test_pipeline.py
+│   ├── test_quiz_mcp.py
 │   ├── test_tools.py
 │   └── config/
 │       ├── __init__.py
@@ -264,6 +292,7 @@ uv run pytest tests/ -q
 
 - **MCP通信**：実際のstdio子プロセスとローカルHTTPサーバーを使い、同じ定義・講義要約が返ることを確認する。
 - **モデルへの受け渡し**：APIを使わないテスト用モデルで、MCPの関数呼び出しと返り値を検証する。
+- **確認問題の入力**：正常な回、未収録の回、0、負数、文字列、真偽値を検証し、通常の案内とMCPエラーを区別する。
 - **説明文**：公開名・引数の型を維持し、短い説明と詳しい説明の差を確認する。
 - **外部サーバー**：fetch用設定からツールが増えることを確認する。テストは外部Webサイトの応答には依存しない。
 - **モデル接続**：タイムアウト・権限・不正出力を区別し、成功と混在させない。

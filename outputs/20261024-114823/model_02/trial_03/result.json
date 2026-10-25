@@ -1,0 +1,15 @@
+{
+  "model": "gpt-6-luna",
+  "trial": 3,
+  "status": "success",
+  "exit_code": 0,
+  "usage": {
+    "input_tokens": 18369,
+    "cached_input_tokens": 0,
+    "output_tokens": 156,
+    "reasoning_output_tokens": 0
+  },
+  "tool_types": [],
+  "elapsed_seconds": 3.63,
+  "directory": "model_02/trial_03"
+}

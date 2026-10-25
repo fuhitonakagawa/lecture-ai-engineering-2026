@@ -1,0 +1,15 @@
+{
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "timeout_seconds": 180,
+  "max_requests": 6,
+  "max_attempts": 2,
+  "retry_delay_seconds": 5,
+  "codex_version": "codex-cli 0.164.0",
+  "questions": [
+    "LoRAとは何ですか？",
+    "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+    "LoRAとQLoRAの違いは？",
+    "第2回の内容から確認問題を1問出して"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "mode": "pydantic",
+  "question": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+  "status": "success",
+  "tool_calls": [
+    {
+      "kind": "call",
+      "name": "search_glossary",
+      "args": {
+        "query": "lecNN-start タグ"
+      }
+    }
+  ],
+  "requests": 2,
+  "cli_attempts": 2,
+  "elapsed_seconds": 9.901
+}

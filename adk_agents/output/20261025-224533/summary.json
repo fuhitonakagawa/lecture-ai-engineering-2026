@@ -1,0 +1,173 @@
+[
+  {
+    "mode": "plain",
+    "question": "LoRAとは何ですか？",
+    "status": "success",
+    "tool_calls": [],
+    "requests": 1,
+    "cli_attempts": 1,
+    "elapsed_seconds": 4.038,
+    "directory": "01_plain"
+  },
+  {
+    "mode": "pydantic",
+    "question": "LoRAとは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 11.146,
+    "directory": "01_pydantic"
+  },
+  {
+    "mode": "adk",
+    "question": "LoRAとは何ですか？",
+    "status": "success",
+    "tool_calls": [],
+    "requests": 1,
+    "cli_attempts": 1,
+    "elapsed_seconds": 8.963,
+    "directory": "01_adk"
+  },
+  {
+    "mode": "plain",
+    "question": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+    "status": "success",
+    "tool_calls": [],
+    "requests": 1,
+    "cli_attempts": 1,
+    "elapsed_seconds": 3.753,
+    "directory": "02_plain"
+  },
+  {
+    "mode": "pydantic",
+    "question": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "lecNN-start タグ"
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 10.712,
+    "directory": "02_pydantic"
+  },
+  {
+    "mode": "adk",
+    "question": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "lecNN-start タグ"
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 12.364,
+    "directory": "02_adk"
+  },
+  {
+    "mode": "plain",
+    "question": "LoRAとQLoRAの違いは？",
+    "status": "success",
+    "tool_calls": [],
+    "requests": 1,
+    "cli_attempts": 1,
+    "elapsed_seconds": 4.365,
+    "directory": "03_plain"
+  },
+  {
+    "mode": "pydantic",
+    "question": "LoRAとQLoRAの違いは？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 7.235,
+    "directory": "03_pydantic"
+  },
+  {
+    "mode": "adk",
+    "question": "LoRAとQLoRAの違いは？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 7.634,
+    "directory": "03_adk"
+  },
+  {
+    "mode": "plain",
+    "question": "第2回の内容から確認問題を1問出して",
+    "status": "success",
+    "tool_calls": [],
+    "requests": 1,
+    "cli_attempts": 1,
+    "elapsed_seconds": 3.075,
+    "directory": "04_plain"
+  },
+  {
+    "mode": "pydantic",
+    "question": "第2回の内容から確認問題を1問出して",
+    "status": "error",
+    "error_type": "CodexFailure",
+    "error_code": "external_tools_used",
+    "error_message": "Codexがアプリ外のツールを使用したため評価を停止します。",
+    "diagnostics": {},
+    "requests": 1,
+    "cli_attempts": 1,
+    "elapsed_seconds": 5.822,
+    "directory": "04_pydantic"
+  },
+  {
+    "mode": "adk",
+    "question": "第2回の内容から確認問題を1問出して",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "make_quiz",
+        "args": {
+          "lecture": 2
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 8.87,
+    "directory": "04_adk"
+  }
+]

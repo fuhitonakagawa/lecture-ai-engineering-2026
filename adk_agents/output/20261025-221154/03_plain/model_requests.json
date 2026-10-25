@@ -1,0 +1,40 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "error",
+        "error_code": "timeout",
+        "diagnostics": {
+          "output_bytes": 101,
+          "last_event": "turn.started"
+        },
+        "elapsed_seconds": 180.01
+      },
+      {
+        "attempt": 2,
+        "status": "success",
+        "usage": {
+          "input_tokens": 20830,
+          "cached_input_tokens": 0,
+          "output_tokens": 341,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 51.785
+      }
+    ],
+    "elapsed_seconds": 236.797,
+    "usage": {
+      "input_tokens": 20830,
+      "cached_input_tokens": 0,
+      "output_tokens": 341,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "**LoRAは学習するパラメータを減らす手法、QLoRAはさらに元モデルを量子化してメモリを節約する手法**です。\n\n| 観点 | LoRA | QLoRA |\n|---|---|---|\n| 基本方式 | 元モデルを固定し、小さな追加パラメータだけを学習 | 量子化した元モデルを固定し、LoRAの追加パラメータを学習 |\n| 元モデルの精度 | 通常はFP16やBF16など | 主に4ビット（NF4） |\n| GPUメモリ | 全パラメータ学習より少ない | 通常のLoRAよりさらに少ない |\n| 学習速度 | 比較的シンプルな処理 | 量子化に伴う処理があり、必ず速くなるわけではない |\n| 品質 | 条件によって変わる | LoRAに近い品質を狙えるが、同等とは限らない |\n\nどちらも、元モデルの重み自体は更新しません。QLoRAでも、学習する追加パラメータまで4ビットになるわけではありません。\n\n**GPUメモリに余裕があればLoRA、メモリを抑えて大きなモデルを調整したいならQLoRA**が選択の目安です。",
+      "tool_calls": []
+    }
+  }
+]

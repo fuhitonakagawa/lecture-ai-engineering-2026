@@ -1,0 +1,63 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 38975,
+          "cached_input_tokens": 19328,
+          "output_tokens": 56,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 7.633
+      }
+    ],
+    "elapsed_seconds": 7.633,
+    "usage": {
+      "input_tokens": 38975,
+      "cached_input_tokens": 19328,
+      "output_tokens": 56,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "search_glossary",
+          "arguments": "{\"query\":\"lecNN-start タグ\"}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 19630,
+          "cached_input_tokens": 0,
+          "output_tokens": 107,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 4.72
+      }
+    ],
+    "elapsed_seconds": 4.721,
+    "usage": {
+      "input_tokens": 19630,
+      "cached_input_tokens": 0,
+      "output_tokens": 107,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "「lecNN-start タグ」は、AIE2026の講座リポジトリで各回の演習開始時点のコードに付けられたGitタグです。たとえば `lec03-start` からブランチを作れば、前の回が終わっていなくても第3回の演習を始められます。関係する回：第1回",
+      "tool_calls": []
+    }
+  }
+]

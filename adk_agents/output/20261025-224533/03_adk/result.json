@@ -1,0 +1,17 @@
+{
+  "mode": "adk",
+  "question": "LoRAとQLoRAの違いは？",
+  "status": "success",
+  "tool_calls": [
+    {
+      "kind": "call",
+      "name": "search_glossary",
+      "args": {
+        "query": "LoRA"
+      }
+    }
+  ],
+  "requests": 2,
+  "cli_attempts": 2,
+  "elapsed_seconds": 7.634
+}

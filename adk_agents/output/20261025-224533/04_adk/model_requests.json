@@ -1,0 +1,63 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 33511,
+          "cached_input_tokens": 29568,
+          "output_tokens": 73,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 4.737
+      }
+    ],
+    "elapsed_seconds": 4.737,
+    "usage": {
+      "input_tokens": 33511,
+      "cached_input_tokens": 29568,
+      "output_tokens": 73,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "make_quiz",
+          "arguments": "{\"lecture\":2}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 19619,
+          "cached_input_tokens": 15744,
+          "output_tokens": 61,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 4.126
+      }
+    ],
+    "elapsed_seconds": 4.126,
+    "usage": {
+      "input_tokens": 19619,
+      "cached_input_tokens": 15744,
+      "output_tokens": 61,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "第2回の確認問題です。\n\n「事前学習」とは何ですか？ 自分の言葉で説明してください。\n\nまずは自分で考えてみましょう。",
+      "tool_calls": []
+    }
+  }
+]

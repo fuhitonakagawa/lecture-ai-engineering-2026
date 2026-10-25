@@ -1,0 +1,55 @@
+[
+  {
+    "parts": [
+      {
+        "content": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+        "timestamp": "2026-10-25T13:45:58.052023Z",
+        "part_kind": "user-prompt"
+      }
+    ],
+    "timestamp": "2026-10-25T13:45:58.052239Z",
+    "instructions": "日本語で質問に回答してください。分からないことは推測で断定しないでください。",
+    "kind": "request",
+    "run_id": "01a1734f-9622-7305-830a-6ca5c9d345a8",
+    "conversation_id": "01a1734f-9622-7305-830a-6ca66e6bda6e",
+    "metadata": null,
+    "state": "complete"
+  },
+  {
+    "parts": [
+      {
+        "content": "この情報だけでは、「lecNN-start タグ」が何を指すのか分かりません。講座資料や利用しているシステム内での定義があれば、共有してください。",
+        "id": null,
+        "provider_name": null,
+        "provider_details": null,
+        "part_kind": "text"
+      }
+    ],
+    "usage": {
+      "input_tokens": 18987,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 62,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "audio_seconds": 0.0,
+      "details": {},
+      "cost": "0.0019297"
+    },
+    "model_name": "gpt-6-luna",
+    "timestamp": "2026-10-25T13:46:01.800686Z",
+    "kind": "response",
+    "provider_name": null,
+    "provider_url": null,
+    "provider_details": null,
+    "provider_response_id": null,
+    "finish_reason": null,
+    "run_id": "01a1734f-9622-7305-830a-6ca5c9d345a8",
+    "conversation_id": "01a1734f-9622-7305-830a-6ca66e6bda6e",
+    "metadata": null,
+    "workspace_ref": null,
+    "failed_attempts": null,
+    "state": "complete"
+  }
+]

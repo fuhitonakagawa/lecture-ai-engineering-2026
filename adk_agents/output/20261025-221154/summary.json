@@ -1,0 +1,45 @@
+[
+  {
+    "mode": "plain",
+    "question": "LoRAとは何ですか？",
+    "status": "success",
+    "tool_calls": [],
+    "requests": 1,
+    "elapsed_seconds": 11.951,
+    "directory": "01_plain"
+  },
+  {
+    "mode": "pydantic",
+    "question": "LoRAとは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "elapsed_seconds": 34.475,
+    "directory": "01_pydantic"
+  },
+  {
+    "mode": "adk",
+    "question": "LoRAとは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "elapsed_seconds": 12.169,
+    "directory": "01_adk"
+  }
+]

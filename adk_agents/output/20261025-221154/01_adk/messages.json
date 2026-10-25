@@ -1,0 +1,98 @@
+[
+  {
+    "content": {
+      "parts": [
+        {
+          "function_call": {
+            "id": "adk-827fa6a1-8bd9-4895-8aea-1d71975ade1e",
+            "args": {
+              "query": "LoRA"
+            },
+            "name": "search_glossary"
+          }
+        }
+      ],
+      "role": "model"
+    },
+    "partial": false,
+    "turn_complete": false,
+    "usage_metadata": {
+      "cached_content_token_count": 0,
+      "candidates_token_count": 35,
+      "prompt_token_count": 21305
+    },
+    "invocation_id": "e-e2305666-e23e-431b-93d6-c045ccf0f086",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "long_running_tool_ids": [],
+    "id": "83791091-1649-41db-b641-80e51cc7934c",
+    "timestamp": 1792933961.325082
+  },
+  {
+    "content": {
+      "parts": [
+        {
+          "function_response": {
+            "id": "adk-827fa6a1-8bd9-4895-8aea-1d71975ade1e",
+            "name": "search_glossary",
+            "response": {
+              "result": "[{\"term\": \"LoRA\", \"lecture\": 2, \"definition\": \"事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法。学習するパラメータが少なく、学習結果（アダプタ）も小さいファイルで保存できる。本講座の第2回演習ではLoRAを扱う。\", \"related\": [\"peft\", \"lora-rank\", \"qlora\"]}, {\"term\": \"ランク（LoRAのr）\", \"lecture\": 2, \"definition\": \"LoRAで使う低ランク行列の大きさを決めるハイパーパラメータ。大きいほど表現力が上がるが、学習するパラメータとメモリも増える。\", \"related\": [\"lora\"]}, {\"term\": \"QLoRA\", \"lecture\": 2, \"definition\": \"ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法。より大きなモデルを小さなGPUで扱える。本講座の第2回演習ではモデルがGPUに載るためLoRAで学習し、4ビットで読み込んだときのメモリと出力の違いを発展で比べる。\", \"related\": [\"lora\", \"quantization\"]}]"
+            }
+          }
+        }
+      ],
+      "role": "user"
+    },
+    "invocation_id": "e-e2305666-e23e-431b-93d6-c045ccf0f086",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "id": "5d4754a2-8e65-4143-bce3-29462f3a91de",
+    "timestamp": 1792933966.303788
+  },
+  {
+    "content": {
+      "parts": [
+        {
+          "text": "LoRAは、事前学習済みモデルの重みを固定したまま、少数の追加パラメータだけを学習する手法です。重みの更新分を2つの小さな行列の積で表し、その行列だけを学習します。\n\n学習するパラメータが少なく、学習結果も「アダプタ」として小さなファイルで保存できます。\n\n関連する回：第2回（演習でLoRAを扱います）。"
+        }
+      ],
+      "role": "model"
+    },
+    "partial": false,
+    "turn_complete": true,
+    "usage_metadata": {
+      "cached_content_token_count": 0,
+      "candidates_token_count": 135,
+      "prompt_token_count": 21731
+    },
+    "invocation_id": "e-e2305666-e23e-431b-93d6-c045ccf0f086",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "id": "4e8d757e-4a0d-46a2-8853-4137427e5c32",
+    "timestamp": 1792933966.30494
+  }
+]

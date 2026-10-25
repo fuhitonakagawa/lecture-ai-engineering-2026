@@ -134,3 +134,18 @@ notebooks/lora_format_tuning-done-ex.ipynb
 notebooks/lora_format_tuning_done_ex-done.ipynb
 結果見れますか？
 課題として求められているものは埋めれますか？
+
+
+---
+
+
+はい、結果を確認し、[lectures/02/answer.md](/Users/fuhitonakagawa/Downloads/lecture-ai-engineering-2026/lectures/02/answer.md)に演習・宿題の結果と考察を記入しました。
+
+今回の会議室FAQでは、
+
+- **形式遵守率：14.29% → 100%**
+- **内容正解率：4.76% → 95.24%**
+- 残った失敗：予約方法を質問する言い換え1問に、不要な確認要求
+- 根拠なしの評価質問6問はすべて正解
+
+宿題は**「実装」レベル**として、題材・質問の作り方・比較・失敗例・考察をまとめています。課題はどれか1レベルでよいため、**10エポックの基礎実験を追加しなくても必要な内容はそろっています。**

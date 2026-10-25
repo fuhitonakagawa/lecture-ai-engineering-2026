@@ -14,13 +14,13 @@ from typing import Any
 import structlog
 from pydantic import BaseModel, ConfigDict, model_validator
 
-from src.config.settings import CodexSettings
 from src.codex_errors import (
     RETRYABLE_CODES,
     CodexFailure,
     classify_process_error,
     output_diagnostics,
 )
+from src.config.settings import CodexSettings
 from src.utils.codex_cli import EXEC_OPTIONS, ParsedResponse, parse_response
 
 logger = logging.getLogger(__name__)

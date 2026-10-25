@@ -1,0 +1,240 @@
+{
+  "source": "mcp_protocol_checks_without_llm",
+  "definitions": {
+    "direct": [
+      {
+        "name": "search_glossary",
+        "description": "講座の用語集から用語を検索し、定義と、どの回で扱うかを返す。\n\nAIエンジニアリングの用語や、この講座（AIE2026）に固有の言葉について\n答える前に使うこと。query には調べたい用語を1つだけ入れる（例: \"LoRA\"）。",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        }
+      },
+      {
+        "name": "get_lecture_summary",
+        "description": "指定した回の資料を返す。",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "lecture": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "lecture"
+          ],
+          "type": "object"
+        }
+      },
+      {
+        "name": "make_quiz",
+        "description": "<summary>指定した回の理解を確かめる確認問題と、その正解を返す。\n\n「第2回から確認問題を1問出して」のように、復習や理解度確認を\n求められたときに使う。正解は出題後の答え合わせにも使える。</summary>\n<returns>\n<description>問題、用語、正解、講義回のJSON。該当する回がなければ案内文。</description>\n</returns>",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "lecture": {
+              "description": "問題の対象となる講義回。1始まりの整数。",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "lecture"
+          ],
+          "type": "object"
+        }
+      }
+    ],
+    "stdio": [
+      {
+        "name": "glossary_search_glossary",
+        "description": "講座の用語集から用語を検索し、定義と、どの回で扱うかを返す。\n\n    AIエンジニアリングの用語や、この講座（AIE2026）に固有の言葉について\n    答える前に使うこと。query には調べたい用語を1つだけ入れる（例: \"LoRA\"）。\n    ",
+        "parameters": {
+          "properties": {
+            "query": {
+              "title": "Query",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object",
+          "title": "search_glossaryArguments"
+        }
+      },
+      {
+        "name": "glossary_get_lecture_summary",
+        "description": "指定した回の資料を返す。",
+        "parameters": {
+          "properties": {
+            "lecture": {
+              "title": "Lecture",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "lecture"
+          ],
+          "type": "object",
+          "title": "get_lecture_summaryArguments"
+        }
+      },
+      {
+        "name": "glossary_make_quiz",
+        "description": "指定した回の理解を確かめる確認問題と、その正解を返す。\n\n    「第2回から確認問題を1問出して」のように、復習や理解度確認を\n    求められたときに使う。正解は出題後の答え合わせにも使える。\n\n    Args:\n        lecture: 問題の対象となる講義回。1始まりの整数。\n\n    Returns:\n        問題、用語、正解、講義回のJSON。該当する回がなければ案内文。\n    ",
+        "parameters": {
+          "properties": {
+            "lecture": {
+              "title": "Lecture",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "lecture"
+          ],
+          "type": "object",
+          "title": "make_quizArguments"
+        }
+      }
+    ],
+    "http": [
+      {
+        "name": "glossary_search_glossary",
+        "description": "講座の用語集から用語を検索し、定義と、どの回で扱うかを返す。\n\n    AIエンジニアリングの用語や、この講座（AIE2026）に固有の言葉について\n    答える前に使うこと。query には調べたい用語を1つだけ入れる（例: \"LoRA\"）。\n    ",
+        "parameters": {
+          "properties": {
+            "query": {
+              "title": "Query",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object",
+          "title": "search_glossaryArguments"
+        }
+      },
+      {
+        "name": "glossary_get_lecture_summary",
+        "description": "指定した回の資料を返す。",
+        "parameters": {
+          "properties": {
+            "lecture": {
+              "title": "Lecture",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "lecture"
+          ],
+          "type": "object",
+          "title": "get_lecture_summaryArguments"
+        }
+      },
+      {
+        "name": "glossary_make_quiz",
+        "description": "指定した回の理解を確かめる確認問題と、その正解を返す。\n\n    「第2回から確認問題を1問出して」のように、復習や理解度確認を\n    求められたときに使う。正解は出題後の答え合わせにも使える。\n\n    Args:\n        lecture: 問題の対象となる講義回。1始まりの整数。\n\n    Returns:\n        問題、用語、正解、講義回のJSON。該当する回がなければ案内文。\n    ",
+        "parameters": {
+          "properties": {
+            "lecture": {
+              "title": "Lecture",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "lecture"
+          ],
+          "type": "object",
+          "title": "make_quizArguments"
+        }
+      }
+    ],
+    "detailed": [
+      {
+        "name": "glossary_search_glossary",
+        "description": "講座の用語集から用語を検索し、定義と、どの回で扱うかを返す。\n\n    AIエンジニアリングの用語や、この講座（AIE2026）に固有の言葉について\n    答える前に使うこと。query には調べたい用語を1つだけ入れる（例: \"LoRA\"）。\n    ",
+        "parameters": {
+          "properties": {
+            "query": {
+              "title": "Query",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object",
+          "title": "search_glossaryArguments"
+        }
+      },
+      {
+        "name": "glossary_get_lecture_summary",
+        "description": "指定した講義回で何を学ぶかを確認するために、要点のMarkdownを返す。\n\n    「第2回では何を学びますか」「第3回の内容を教えて」のように、\n    回全体のテーマや学習内容を尋ねられたときに使う。\n    個別の用語の定義はsearch_glossary、確認問題の出題はmake_quizを使う。\n\n    Args:\n        lecture: 調べる講義回。1始まりの整数。\n\n    Returns:\n        講義の要点。未収録の回では利用可能な回の案内。\n    ",
+        "parameters": {
+          "properties": {
+            "lecture": {
+              "title": "Lecture",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "lecture"
+          ],
+          "type": "object",
+          "title": "get_lecture_summaryArguments"
+        }
+      },
+      {
+        "name": "glossary_make_quiz",
+        "description": "指定した回の理解を確かめる確認問題と、その正解を返す。\n\n    「第2回から確認問題を1問出して」のように、復習や理解度確認を\n    求められたときに使う。正解は出題後の答え合わせにも使える。\n\n    Args:\n        lecture: 問題の対象となる講義回。1始まりの整数。\n\n    Returns:\n        問題、用語、正解、講義回のJSON。該当する回がなければ案内文。\n    ",
+        "parameters": {
+          "properties": {
+            "lecture": {
+              "title": "Lecture",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "lecture"
+          ],
+          "type": "object",
+          "title": "make_quizArguments"
+        }
+      }
+    ]
+  },
+  "tool": "get_lecture_summary",
+  "arguments": {
+    "lecture": 2
+  },
+  "results": {
+    "stdio": [
+      {
+        "type": "text",
+        "text": "# 第2回 ファインチューニングとLoRA\n\n## この回のねらい\n\n- 事前学習とファインチューニングの違い、ファインチューニングが向く場面と向かない場面を理解する\n- LoRAの考え方を理解し、Google Colab上で小さなモデルをLoRAで学習させる\n\n## 要点\n\n1. **事前学習とファインチューニング**：事前学習で汎用的な言語能力を身につけたモデルを、目的に合うデータで追加学習させるのがファインチューニング。\n2. **向く場面・向かない場面**：出力形式や口調、特定タスクの振る舞いを身につけさせるのに向く。新しい事実や頻繁に変わる情報は、ツールや外部データで参照させるほうが向くことが多い。\n3. **SFT**：入力と望ましい出力のペアで学習させる。データの質と形式が結果を大きく左右する。\n4. **PEFTとLoRA**：全パラメータを更新せず、小さな低ランク行列だけを学習する。必要なGPUメモリと保存容量を大きく減らせる。主なハイパーパラメータはランク r、学習率、エポック数。\n5. **QLoRAとの関係**：QLoRAはベースモデルの重みを4bitに量子化して保持し、その上でLoRAのアダプタだけを学習する方法。重みのメモリが減る一方、学習は速くならず、量子化の誤差で出力が変わることがある。演習ではモデルがT4に載るためLoRAで学習し、4bitで読み込んだときの違いは発展で確かめる。\n6. **過学習に注意**：学習に使わない検証データで性能を確かめる。\n\n## 演習で体験すること\n\n- Colab上で小さなモデル（Qwen3.5-0.8B）を架空FAQのデータでLoRA学習させ、JSON形式の遵守率と内容正解率を学習前後で比べる\n- 形式は学習で身につくが、FAQにない質問への判断（確認を求めるか断定するか）までは保証されないことを確かめる\n\n## 関連用語\n\n事前学習 / ファインチューニング / SFT / PEFT / LoRA / ランク / QLoRA / 量子化 / 学習率 / エポック / 過学習 / ハルシネーション\n",
+        "annotations": null,
+        "meta": null
+      }
+    ],
+    "http": [
+      {
+        "type": "text",
+        "text": "# 第2回 ファインチューニングとLoRA\n\n## この回のねらい\n\n- 事前学習とファインチューニングの違い、ファインチューニングが向く場面と向かない場面を理解する\n- LoRAの考え方を理解し、Google Colab上で小さなモデルをLoRAで学習させる\n\n## 要点\n\n1. **事前学習とファインチューニング**：事前学習で汎用的な言語能力を身につけたモデルを、目的に合うデータで追加学習させるのがファインチューニング。\n2. **向く場面・向かない場面**：出力形式や口調、特定タスクの振る舞いを身につけさせるのに向く。新しい事実や頻繁に変わる情報は、ツールや外部データで参照させるほうが向くことが多い。\n3. **SFT**：入力と望ましい出力のペアで学習させる。データの質と形式が結果を大きく左右する。\n4. **PEFTとLoRA**：全パラメータを更新せず、小さな低ランク行列だけを学習する。必要なGPUメモリと保存容量を大きく減らせる。主なハイパーパラメータはランク r、学習率、エポック数。\n5. **QLoRAとの関係**：QLoRAはベースモデルの重みを4bitに量子化して保持し、その上でLoRAのアダプタだけを学習する方法。重みのメモリが減る一方、学習は速くならず、量子化の誤差で出力が変わることがある。演習ではモデルがT4に載るためLoRAで学習し、4bitで読み込んだときの違いは発展で確かめる。\n6. **過学習に注意**：学習に使わない検証データで性能を確かめる。\n\n## 演習で体験すること\n\n- Colab上で小さなモデル（Qwen3.5-0.8B）を架空FAQのデータでLoRA学習させ、JSON形式の遵守率と内容正解率を学習前後で比べる\n- 形式は学習で身につくが、FAQにない質問への判断（確認を求めるか断定するか）までは保証されないことを確かめる\n\n## 関連用語\n\n事前学習 / ファインチューニング / SFT / PEFT / LoRA / ランク / QLoRA / 量子化 / 学習率 / エポック / 過学習 / ハルシネーション\n",
+        "annotations": null,
+        "meta": null
+      }
+    ]
+  },
+  "definitions_match": true,
+  "results_match": true,
+  "description_only_differs": true
+}

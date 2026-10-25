@@ -1,7 +1,9 @@
 """学習支援エージェントの仕様を検証する。"""
 
 import json
+
 import pytest
+
 from src import tools
 
 

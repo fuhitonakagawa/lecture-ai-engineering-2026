@@ -1,8 +1,8 @@
 """環境設定に従って、ツール一覧・単独質問・基礎課題の比較を実行する。"""
 
 import asyncio
-from datetime import datetime
 import sys
+from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from dotenv import load_dotenv

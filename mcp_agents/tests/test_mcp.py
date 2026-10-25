@@ -5,9 +5,14 @@ from pathlib import Path
 
 import pytest
 from pydantic import ValidationError
-from pydantic_ai.messages import ToolReturnPart
+from pydantic_ai.messages import (
+    ModelMessage,
+    ModelResponse,
+    TextPart,
+    ToolCallPart,
+    ToolReturnPart,
+)
 from pydantic_ai.models.function import AgentInfo, FunctionModel
-from pydantic_ai.messages import ModelMessage, ModelResponse, TextPart, ToolCallPart
 
 from src.client import ServerSpec, build_agent, inspect_tools, make_client
 from src.config.settings import PROJECT_ROOT

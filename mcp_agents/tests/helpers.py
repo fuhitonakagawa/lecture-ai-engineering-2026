@@ -1,6 +1,7 @@
 """外部APIを使わないモデル応答のテストデータ。"""
 
 import json
+
 from src.utils.codex_cli import ParsedResponse
 
 

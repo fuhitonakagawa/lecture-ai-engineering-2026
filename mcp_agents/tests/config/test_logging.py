@@ -1,6 +1,7 @@
 """学習支援エージェントの仕様を検証する。"""
 
 import json
+
 from src.config.logging import normalize_event
 
 

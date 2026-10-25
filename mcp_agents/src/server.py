@@ -2,10 +2,10 @@
 
 import logging
 import os
+import sys
 
 import structlog
 import uvicorn
-
 from dotenv import load_dotenv
 from mcp.server.mcpserver import MCPServer
 
@@ -29,6 +29,10 @@ def build_server(style: str) -> MCPServer:
 
 def main() -> None:
     """必須環境設定に従い、標準出力をプロトコル専用にして起動する。"""
+    if len(sys.argv) > 1:
+        raise SystemExit(
+            "通信方式は.envまたはMCP_TRANSPORT環境変数で指定してください。"
+        )
     load_dotenv(PROJECT_ROOT / ".env", override=False)
     configure_logging()
     style = required_setting("MCP_DESCRIPTION_STYLE")

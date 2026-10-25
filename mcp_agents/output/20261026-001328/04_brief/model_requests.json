@@ -1,0 +1,63 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 39538,
+          "cached_input_tokens": 19584,
+          "output_tokens": 86,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 6.873
+      }
+    ],
+    "elapsed_seconds": 6.873,
+    "usage": {
+      "input_tokens": 39538,
+      "cached_input_tokens": 19584,
+      "output_tokens": 86,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "glossary_get_lecture_summary",
+          "arguments": "{\"lecture\":2}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 18392,
+          "cached_input_tokens": 0,
+          "output_tokens": 139,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 5.804
+      }
+    ],
+    "elapsed_seconds": 5.804,
+    "usage": {
+      "input_tokens": 18392,
+      "cached_input_tokens": 0,
+      "output_tokens": 139,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "第2回「ファインチューニングとLoRA」では、事前学習とファインチューニングの違いや、ファインチューニングが向く用途・向かない用途を学びます。SFTやPEFT、LoRAの仕組み、QLoRAとの違い、過学習への注意点も扱います。演習ではGoogle Colabで小さなモデルをLoRAで学習させ、学習前後の出力を比較します。\n\n関連講義：第2回",
+      "tool_calls": []
+    }
+  }
+]

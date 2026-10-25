@@ -246,6 +246,7 @@ mcp_agents/
 │   ├── helpers.py
 │   ├── test_codex_backend.py
 │   ├── test_mcp.py
+│   ├── test_pipeline.py
 │   ├── test_tools.py
 │   └── config/
 │       ├── __init__.py

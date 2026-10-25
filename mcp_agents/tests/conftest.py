@@ -1,11 +1,11 @@
 """ローカルHTTPサーバーをテストの間だけ起動する。"""
 
-from collections.abc import Iterator
 import os
 import socket
 import subprocess
 import sys
 import time
+from collections.abc import Iterator
 
 import pytest
 

@@ -1,21 +1,26 @@
 """MCPの接続方式と説明文を比較し、定義・回答・トレースを保存する。"""
 
+import json
 from dataclasses import asdict, dataclass
 from datetime import datetime
-import json
 from pathlib import Path
 from time import perf_counter
 from typing import Any
 from zoneinfo import ZoneInfo
 
-from pydantic_ai.messages import ModelMessagesTypeAdapter, ToolCallPart, ToolReturnPart
+from pydantic_ai.messages import (
+    ModelMessage,
+    ModelMessagesTypeAdapter,
+    ToolCallPart,
+    ToolReturnPart,
+)
 from pydantic_ai.usage import UsageLimits
 
 from src.client import build_agent, inspect_tools
 from src.codex_backend import CodexBackend
 from src.codex_errors import FATAL_CODES, CodexFailure
 from src.codex_model import build_codex_model
-from src.config.settings import CodexSettings, PROJECT_ROOT
+from src.config.settings import PROJECT_ROOT, CodexSettings
 from src.experiment_storage import archive_case, prepare_run, run_lock, saved_success
 from src.utils.artifacts import write_json
 from src.utils.codex_cli import codex_version
@@ -64,7 +69,7 @@ def comparison_cases() -> list[ExperimentCase]:
     ]
 
 
-def extract_trace(messages: list[Any]) -> list[dict[str, Any]]:
+def extract_trace(messages: list[ModelMessage]) -> list[dict[str, Any]]:
     """モデルが依頼した関数名・引数と、実際の返り値を抽出する。"""
     trace = []
     for message in messages:

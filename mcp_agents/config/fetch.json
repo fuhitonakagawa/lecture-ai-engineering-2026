@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "glossary": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "src.server"],
+      "env": {
+        "MCP_TRANSPORT": "stdio",
+        "MCP_DESCRIPTION_STYLE": "brief"
+      }
+    },
+    "fetch": {
+      "command": "uv",
+      "args": ["run", "mcp-server-fetch"]
+    }
+  }
+}

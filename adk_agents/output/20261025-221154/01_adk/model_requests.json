@@ -1,0 +1,37 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "elapsed_seconds": 4.975,
+    "usage": {
+      "input_tokens": 21305,
+      "cached_input_tokens": 0,
+      "output_tokens": 35,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "search_glossary",
+          "arguments": "{\"query\":\"LoRA\"}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "elapsed_seconds": 6.856,
+    "usage": {
+      "input_tokens": 21731,
+      "cached_input_tokens": 0,
+      "output_tokens": 135,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "LoRAは、事前学習済みモデルの重みを固定したまま、少数の追加パラメータだけを学習する手法です。重みの更新分を2つの小さな行列の積で表し、その行列だけを学習します。\n\n学習するパラメータが少なく、学習結果も「アダプタ」として小さなファイルで保存できます。\n\n関連する回：第2回（演習でLoRAを扱います）。",
+      "tool_calls": []
+    }
+  }
+]

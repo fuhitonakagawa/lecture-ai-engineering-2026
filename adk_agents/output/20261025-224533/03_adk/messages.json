@@ -1,0 +1,98 @@
+[
+  {
+    "content": {
+      "parts": [
+        {
+          "function_call": {
+            "id": "adk-ced26946-4eb8-4216-8e3f-263fa6f228dd",
+            "args": {
+              "query": "LoRA"
+            },
+            "name": "search_glossary"
+          }
+        }
+      ],
+      "role": "model"
+    },
+    "partial": false,
+    "turn_complete": false,
+    "usage_metadata": {
+      "cached_content_token_count": 0,
+      "candidates_token_count": 35,
+      "prompt_token_count": 19456
+    },
+    "invocation_id": "e-14ec8b0f-a77c-4a39-86e6-390951706b4a",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "long_running_tool_ids": [],
+    "id": "c6f42eac-cae1-4ebc-9798-b9fd2ce0a0a5",
+    "timestamp": 1792935996.482522
+  },
+  {
+    "content": {
+      "parts": [
+        {
+          "function_response": {
+            "id": "adk-ced26946-4eb8-4216-8e3f-263fa6f228dd",
+            "name": "search_glossary",
+            "response": {
+              "result": "[{\"term\": \"LoRA\", \"lecture\": 2, \"definition\": \"事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法。学習するパラメータが少なく、学習結果（アダプタ）も小さいファイルで保存できる。本講座の第2回演習ではLoRAを扱う。\", \"related\": [\"peft\", \"lora-rank\", \"qlora\"]}, {\"term\": \"ランク（LoRAのr）\", \"lecture\": 2, \"definition\": \"LoRAで使う低ランク行列の大きさを決めるハイパーパラメータ。大きいほど表現力が上がるが、学習するパラメータとメモリも増える。\", \"related\": [\"lora\"]}, {\"term\": \"QLoRA\", \"lecture\": 2, \"definition\": \"ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法。より大きなモデルを小さなGPUで扱える。本講座の第2回演習ではモデルがGPUに載るためLoRAで学習し、4ビットで読み込んだときのメモリと出力の違いを発展で比べる。\", \"related\": [\"lora\", \"quantization\"]}]"
+            }
+          }
+        }
+      ],
+      "role": "user"
+    },
+    "invocation_id": "e-14ec8b0f-a77c-4a39-86e6-390951706b4a",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "id": "cb0375de-affd-4f45-8e84-86bff62eaf53",
+    "timestamp": 1792935999.434155
+  },
+  {
+    "content": {
+      "parts": [
+        {
+          "text": "LoRAは、ベースモデルの重みを固定し、低ランク行列で表した更新分だけを学習する手法です。QLoRAは、ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAによる学習を行います。つまり、QLoRAは量子化を組み合わせて、より小さなGPUでも大きなモデルを扱いやすくします。どちらも第2回で扱います。"
+        }
+      ],
+      "role": "model"
+    },
+    "partial": false,
+    "turn_complete": true,
+    "usage_metadata": {
+      "cached_content_token_count": 9856,
+      "candidates_token_count": 135,
+      "prompt_token_count": 17141
+    },
+    "invocation_id": "e-14ec8b0f-a77c-4a39-86e6-390951706b4a",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "id": "671b7da6-3db3-4178-a4a9-fbbe5090db0d",
+    "timestamp": 1792935999.435164
+  }
+]

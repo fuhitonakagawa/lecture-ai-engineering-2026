@@ -1,0 +1,67 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 21320,
+          "cached_input_tokens": 0,
+          "output_tokens": 38,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 4.511
+      }
+    ],
+    "elapsed_seconds": 4.511,
+    "usage": {
+      "input_tokens": 21320,
+      "cached_input_tokens": 0,
+      "output_tokens": 38,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "search_glossary",
+          "arguments": "{\"query\":\"lecNN-start タグ\"}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "error",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "error",
+        "error_code": "timeout",
+        "diagnostics": {
+          "output_bytes": 101,
+          "last_event": "turn.started"
+        },
+        "elapsed_seconds": 180.011
+      },
+      {
+        "attempt": 2,
+        "status": "error",
+        "error_code": "timeout",
+        "diagnostics": {
+          "output_bytes": 101,
+          "last_event": "turn.started"
+        },
+        "elapsed_seconds": 180.012
+      }
+    ],
+    "error_code": "timeout",
+    "diagnostics": {
+      "output_bytes": 101,
+      "last_event": "turn.started"
+    },
+    "elapsed_seconds": 365.025
+  }
+]

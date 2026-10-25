@@ -1,0 +1,63 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 39526,
+          "cached_input_tokens": 19584,
+          "output_tokens": 65,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 5.531
+      }
+    ],
+    "elapsed_seconds": 5.531,
+    "usage": {
+      "input_tokens": 39526,
+      "cached_input_tokens": 19584,
+      "output_tokens": 65,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "glossary_search_glossary",
+          "arguments": "{\"query\":\"3レベル\"}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 20545,
+          "cached_input_tokens": 0,
+          "output_tokens": 110,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 3.658
+      }
+    ],
+    "elapsed_seconds": 3.658,
+    "usage": {
+      "input_tokens": 20545,
+      "cached_input_tokens": 0,
+      "output_tokens": 110,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "「宿題の3レベル」は、宿題の取り組み方を「基礎（講義内容の確認）」「実装（自分でコードを書く）」「発展（調査や試行）」に分けたものです。どれか1つに取り組めばその回の宿題は完了で、原則として採点はありません。これは第1回で扱われています。",
+      "tool_calls": []
+    }
+  }
+]

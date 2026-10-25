@@ -1,0 +1,6 @@
+{
+  "mode": "mcp",
+  "config_file": "config/stdio.json",
+  "style": "brief",
+  "tool_count": 3
+}

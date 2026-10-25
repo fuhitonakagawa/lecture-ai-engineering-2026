@@ -1,0 +1,143 @@
+[
+  {
+    "name": "01_direct",
+    "mode": "direct",
+    "config_file": "config/stdio.json",
+    "style": "brief",
+    "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "connection": {
+      "mcpServers": {
+        "glossary": {
+          "command": "uv",
+          "args": [
+            "run",
+            "python",
+            "-m",
+            "src.server"
+          ],
+          "env": {
+            "MCP_TRANSPORT": "stdio",
+            "MCP_DESCRIPTION_STYLE": "brief"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "02_stdio",
+    "mode": "mcp",
+    "config_file": "config/stdio.json",
+    "style": "brief",
+    "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "connection": {
+      "mcpServers": {
+        "glossary": {
+          "command": "uv",
+          "args": [
+            "run",
+            "python",
+            "-m",
+            "src.server"
+          ],
+          "env": {
+            "MCP_TRANSPORT": "stdio",
+            "MCP_DESCRIPTION_STYLE": "brief"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "03_http",
+    "mode": "mcp",
+    "config_file": "config/http.json",
+    "style": "brief",
+    "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "connection": {
+      "mcpServers": {
+        "glossary": {
+          "url": "http://127.0.0.1:8767/mcp"
+        }
+      }
+    }
+  },
+  {
+    "name": "04_brief",
+    "mode": "mcp",
+    "config_file": "config/stdio.json",
+    "style": "brief",
+    "question": "第2回では何を学びますか？",
+    "connection": {
+      "mcpServers": {
+        "glossary": {
+          "command": "uv",
+          "args": [
+            "run",
+            "python",
+            "-m",
+            "src.server"
+          ],
+          "env": {
+            "MCP_TRANSPORT": "stdio",
+            "MCP_DESCRIPTION_STYLE": "brief"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "05_detailed",
+    "mode": "mcp",
+    "config_file": "config/stdio_detailed.json",
+    "style": "detailed",
+    "question": "第2回では何を学びますか？",
+    "connection": {
+      "mcpServers": {
+        "glossary": {
+          "command": "uv",
+          "args": [
+            "run",
+            "python",
+            "-m",
+            "src.server"
+          ],
+          "env": {
+            "MCP_TRANSPORT": "stdio",
+            "MCP_DESCRIPTION_STYLE": "detailed"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "06_fetch",
+    "mode": "mcp",
+    "config_file": "config/fetch.json",
+    "style": "brief",
+    "question": "https://modelcontextprotocol.io/docs/getting-started/intro.md の冒頭を日本語で3行に要約して",
+    "connection": {
+      "mcpServers": {
+        "glossary": {
+          "command": "uv",
+          "args": [
+            "run",
+            "python",
+            "-m",
+            "src.server"
+          ],
+          "env": {
+            "MCP_TRANSPORT": "stdio",
+            "MCP_DESCRIPTION_STYLE": "brief"
+          }
+        },
+        "fetch": {
+          "command": "uv",
+          "args": [
+            "run",
+            "mcp-server-fetch"
+          ]
+        }
+      }
+    }
+  }
+]

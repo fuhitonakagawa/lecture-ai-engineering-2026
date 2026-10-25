@@ -1,0 +1,40 @@
+{
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "timeout_seconds": 180,
+  "max_requests": 6,
+  "max_attempts": 2,
+  "retry_delay_seconds": 5,
+  "case": {
+    "name": "06_fetch",
+    "mode": "mcp",
+    "config_file": "config/fetch.json",
+    "style": "brief",
+    "question": "https://modelcontextprotocol.io/docs/getting-started/intro.md の冒頭を日本語で3行に要約して"
+  },
+  "mcp_timeout_seconds": 30,
+  "connection": {
+    "mcpServers": {
+      "glossary": {
+        "command": "uv",
+        "args": [
+          "run",
+          "python",
+          "-m",
+          "src.server"
+        ],
+        "env": {
+          "MCP_TRANSPORT": "stdio",
+          "MCP_DESCRIPTION_STYLE": "brief"
+        }
+      },
+      "fetch": {
+        "command": "uv",
+        "args": [
+          "run",
+          "mcp-server-fetch"
+        ]
+      }
+    }
+  }
+}

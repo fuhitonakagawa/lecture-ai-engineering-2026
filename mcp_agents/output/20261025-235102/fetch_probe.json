@@ -1,0 +1,11 @@
+{
+  "source": "direct_mcp_call_without_llm",
+  "tool": "fetch",
+  "arguments": {
+    "url": "https://modelcontextprotocol.io/docs/getting-started/intro.md",
+    "max_length": 1200
+  },
+  "content": [
+    "Content type text/markdown; charset=utf-8 cannot be simplified to markdown, but here is the raw content:\nContents of https://modelcontextprotocol.io/docs/getting-started/intro.md:\n> ## Documentation Index\n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# What is the Model Context Protocol (MCP)?\n\nMCP (Model Context Protocol) is an open-source standard for connecting AI applications to external systems.\n\nUsing MCP, AI applications like Claude or ChatGPT can connect to data sources (e.g. local files, databases), tools (e.g. search engines, calculators) and workflows (e.g. specialized prompts)—enabling them to access key information and perform tasks.\n\nThink of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to connect electronic devices, MCP provides a standardized way to connect AI applications to external systems.\n\n![](https://mintcdn.com/mcp/bEUxYpZqie0DsluH/images/mcp-simple-diagram.png?fit=max\\&auto=format\\&n=bEUxYpZqie0DsluH\\&q=85\\&s=35268aa0ad50b8c385913810e7604550)\n\n## What can MCP enable?\n\n* Agents can access your Google Calendar and Notion, acting as a more personalized AI assistant.\n* Claude Code can generate an entire web app using a Figma design.\n* Enterprise chatbots can connect to multiple database\n\n<error>Content truncated. Call the fetch tool with a start_index of 1200 to get more content.</error>"
+  ]
+}

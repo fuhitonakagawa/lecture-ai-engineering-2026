@@ -1,0 +1,98 @@
+[
+  {
+    "content": {
+      "parts": [
+        {
+          "function_call": {
+            "id": "adk-5f009d6e-69c0-4a35-a8cf-f7ad30f089d0",
+            "args": {
+              "query": "lecNN-start タグ"
+            },
+            "name": "search_glossary"
+          }
+        }
+      ],
+      "role": "model"
+    },
+    "partial": false,
+    "turn_complete": false,
+    "usage_metadata": {
+      "cached_content_token_count": 19328,
+      "candidates_token_count": 56,
+      "prompt_token_count": 38975
+    },
+    "invocation_id": "e-8876d955-438c-4d79-852a-620662b3182f",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "long_running_tool_ids": [],
+    "id": "fcf7daf4-1b90-4adb-a95c-66cc2160b0f6",
+    "timestamp": 1792935972.519445
+  },
+  {
+    "content": {
+      "parts": [
+        {
+          "function_response": {
+            "id": "adk-5f009d6e-69c0-4a35-a8cf-f7ad30f089d0",
+            "name": "search_glossary",
+            "response": {
+              "result": "[{\"term\": \"lecNN-start タグ\", \"lecture\": 1, \"definition\": \"AIE2026の講座repoで、各回の演習開始時点のコードに付けているGitタグ（例：lec03-start）。前の回が終わっていなくても、このタグからブランチを作ればその回の演習を始められる。\", \"related\": [\"branch\"]}]"
+            }
+          }
+        }
+      ],
+      "role": "user"
+    },
+    "invocation_id": "e-8876d955-438c-4d79-852a-620662b3182f",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "id": "76f0945b-c6a2-4be6-9c65-8f24f9928672",
+    "timestamp": 1792935980.155564
+  },
+  {
+    "content": {
+      "parts": [
+        {
+          "text": "「lecNN-start タグ」は、AIE2026の講座リポジトリで各回の演習開始時点のコードに付けられたGitタグです。たとえば `lec03-start` からブランチを作れば、前の回が終わっていなくても第3回の演習を始められます。関係する回：第1回"
+        }
+      ],
+      "role": "model"
+    },
+    "partial": false,
+    "turn_complete": true,
+    "usage_metadata": {
+      "cached_content_token_count": 0,
+      "candidates_token_count": 107,
+      "prompt_token_count": 19630
+    },
+    "invocation_id": "e-8876d955-438c-4d79-852a-620662b3182f",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "id": "21be566f-2806-451b-9a4f-fbb4e1d2f985",
+    "timestamp": 1792935980.156567
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "request": 1,
+    "status": "error",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 39490,
+          "cached_input_tokens": 19584,
+          "output_tokens": 63,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 5.819
+      }
+    ],
+    "error_code": "external_tools_used",
+    "diagnostics": {},
+    "elapsed_seconds": 5.819
+  }
+]

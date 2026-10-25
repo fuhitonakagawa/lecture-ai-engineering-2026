@@ -25,7 +25,7 @@ def test_framework_executes_quiz_and_returns_result_to_codex(
         return response("事前学習とは何ですか？（第2回）", [])
 
     monkeypatch.setattr(CodexBackend, "_execute", execute)
-    backend = CodexBackend(CodexSettings("test-model", "low", 10, 3))
+    backend = CodexBackend(CodexSettings("test-model", "low", 10, 3, 2, 0))
     if framework == "pydantic":
         answer, trace, _ = asyncio.run(
             run_pydantic("第2回の確認問題", backend, plain=False)
@@ -46,7 +46,7 @@ def test_plain_model_has_no_tools(monkeypatch: pytest.MonkeyPatch) -> None:
         return response("講座固有の情報は分かりません。", [])
 
     monkeypatch.setattr(CodexBackend, "_execute", execute)
-    backend = CodexBackend(CodexSettings("test-model", "low", 10, 2))
+    backend = CodexBackend(CodexSettings("test-model", "low", 10, 2, 2, 0))
     _, trace, _ = asyncio.run(run_pydantic("講座のタグとは？", backend, plain=True))
     assert trace == []
     assert len(backend.records) == 1

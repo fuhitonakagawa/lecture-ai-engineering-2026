@@ -1,0 +1,116 @@
+[
+  {
+    "parts": [
+      {
+        "content": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+        "timestamp": "2026-10-25T13:33:04.627333Z",
+        "part_kind": "user-prompt"
+      }
+    ],
+    "timestamp": "2026-10-25T13:33:04.627715Z",
+    "instructions": "あなたはAIエンジニアリング講座（AIE2026）の学習支援エージェントです。\n- 用語や講座に固有のことを答える前に、必ず search_glossary で用語集を確認する。\n- 回の内容を聞かれたら get_lecture_summary を使う。\n- 確認問題や復習問題を求められたら make_quiz を使い、指定された回の問題を出す。\n- 用語集に見つからないことは、推測で断定せず「用語集にはない」と伝える。\n- 回答の最後に、関係する回（第N回）を示す。\n- 宿題の答えそのものは書かず、考え方のヒントで導く。",
+    "kind": "request",
+    "run_id": "01a17343-c8f2-7615-90af-12d2fac454ec",
+    "conversation_id": "01a17343-c8f2-7615-90af-12d3bc08fcae",
+    "metadata": null,
+    "state": "complete"
+  },
+  {
+    "parts": [
+      {
+        "tool_name": "search_glossary",
+        "args": "{\"query\":\"lecNN-start タグ\"}",
+        "tool_call_id": "pyd_ai_a65fa1cef11041dba79ec82f96a17d3d",
+        "tool_kind": null,
+        "id": null,
+        "provider_name": null,
+        "provider_details": null,
+        "part_kind": "tool-call"
+      }
+    ],
+    "usage": {
+      "input_tokens": 21585,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 38,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "audio_seconds": 0.0,
+      "details": {},
+      "cost": "0.04355"
+    },
+    "model_name": "gpt-6.1-sol",
+    "timestamp": "2026-10-25T13:33:08.533799Z",
+    "kind": "response",
+    "provider_name": null,
+    "provider_url": null,
+    "provider_details": null,
+    "provider_response_id": null,
+    "finish_reason": null,
+    "run_id": "01a17343-c8f2-7615-90af-12d2fac454ec",
+    "conversation_id": "01a17343-c8f2-7615-90af-12d3bc08fcae",
+    "metadata": null,
+    "workspace_ref": null,
+    "failed_attempts": null,
+    "state": "complete"
+  },
+  {
+    "parts": [
+      {
+        "tool_name": "search_glossary",
+        "content": "[{\"term\": \"lecNN-start タグ\", \"lecture\": 1, \"definition\": \"AIE2026の講座repoで、各回の演習開始時点のコードに付けているGitタグ（例：lec03-start）。前の回が終わっていなくても、このタグからブランチを作ればその回の演習を始められる。\", \"related\": [\"branch\"]}]",
+        "tool_call_id": "pyd_ai_a65fa1cef11041dba79ec82f96a17d3d",
+        "tool_kind": null,
+        "metadata": null,
+        "timestamp": "2026-10-25T13:33:08.537048Z",
+        "outcome": "success",
+        "part_kind": "tool-return"
+      }
+    ],
+    "timestamp": "2026-10-25T13:33:08.537333Z",
+    "instructions": "あなたはAIエンジニアリング講座（AIE2026）の学習支援エージェントです。\n- 用語や講座に固有のことを答える前に、必ず search_glossary で用語集を確認する。\n- 回の内容を聞かれたら get_lecture_summary を使う。\n- 確認問題や復習問題を求められたら make_quiz を使い、指定された回の問題を出す。\n- 用語集に見つからないことは、推測で断定せず「用語集にはない」と伝える。\n- 回答の最後に、関係する回（第N回）を示す。\n- 宿題の答えそのものは書かず、考え方のヒントで導く。",
+    "kind": "request",
+    "run_id": "01a17343-c8f2-7615-90af-12d2fac454ec",
+    "conversation_id": "01a17343-c8f2-7615-90af-12d3bc08fcae",
+    "metadata": null,
+    "state": "complete"
+  },
+  {
+    "parts": [
+      {
+        "content": "「lecNN-start タグ」は、AIE2026の講座リポジトリで、各回の演習開始時点のコードに付けられたGitタグです。例えば `lec03-start` は第3回の演習開始時点を示します。\n\n前の回が終わっていなくても、このタグからブランチを作れば、その回の演習を始められます。\n\n関連する回：第1回",
+        "id": null,
+        "provider_name": null,
+        "provider_details": null,
+        "part_kind": "text"
+      }
+    ],
+    "usage": {
+      "input_tokens": 18480,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 122,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "audio_seconds": 0.0,
+      "details": {},
+      "cost": "0.03818"
+    },
+    "model_name": "gpt-6.1-sol",
+    "timestamp": "2026-10-25T13:33:14.524925Z",
+    "kind": "response",
+    "provider_name": null,
+    "provider_url": null,
+    "provider_details": null,
+    "provider_response_id": null,
+    "finish_reason": null,
+    "run_id": "01a17343-c8f2-7615-90af-12d2fac454ec",
+    "conversation_id": "01a17343-c8f2-7615-90af-12d3bc08fcae",
+    "metadata": null,
+    "workspace_ref": null,
+    "failed_attempts": null,
+    "state": "complete"
+  }
+]

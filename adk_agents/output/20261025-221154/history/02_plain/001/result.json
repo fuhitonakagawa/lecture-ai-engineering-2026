@@ -1,0 +1,8 @@
+{
+  "mode": "plain",
+  "question": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+  "status": "error",
+  "error_type": "RuntimeError",
+  "requests": 1,
+  "elapsed_seconds": 180.011
+}

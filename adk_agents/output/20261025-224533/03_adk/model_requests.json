@@ -1,0 +1,63 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 19456,
+          "cached_input_tokens": 0,
+          "output_tokens": 35,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 2.949
+      }
+    ],
+    "elapsed_seconds": 2.949,
+    "usage": {
+      "input_tokens": 19456,
+      "cached_input_tokens": 0,
+      "output_tokens": 35,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "search_glossary",
+          "arguments": "{\"query\":\"LoRA\"}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 17141,
+          "cached_input_tokens": 9856,
+          "output_tokens": 135,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 4.676
+      }
+    ],
+    "elapsed_seconds": 4.676,
+    "usage": {
+      "input_tokens": 17141,
+      "cached_input_tokens": 9856,
+      "output_tokens": 135,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "LoRAは、ベースモデルの重みを固定し、低ランク行列で表した更新分だけを学習する手法です。QLoRAは、ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAによる学習を行います。つまり、QLoRAは量子化を組み合わせて、より小さなGPUでも大きなモデルを扱いやすくします。どちらも第2回で扱います。",
+      "tool_calls": []
+    }
+  }
+]

@@ -3,11 +3,9 @@
 import json
 import logging
 from dataclasses import asdict
-from datetime import datetime
 from pathlib import Path
 from time import perf_counter
 from typing import Any
-from zoneinfo import ZoneInfo
 
 import structlog
 from google.adk.agents.run_config import RunConfig
@@ -27,6 +25,8 @@ from src.config.settings import PROJECT_ROOT, required_setting
 from src.utils.artifacts import write_json
 from src.utils.codex_cli import codex_version
 from src.codex_model import build_codex_model
+from src.codex_errors import FATAL_CODES, CodexFailure
+from src.experiment_storage import archive_case, prepare_run, run_lock, saved_success
 
 logger = logging.getLogger(__name__)
 
@@ -130,6 +130,7 @@ async def run_case(
 ) -> dict[str, Any]:
     """1つの質問について実測結果と成否を保存する。"""
     directory.mkdir()
+    write_json(directory / "execution_settings.json", asdict(settings))
     backend = CodexBackend(settings)
     started = perf_counter()
     record: dict[str, Any] = {"mode": mode, "question": question, "status": "error"}
@@ -149,9 +150,23 @@ async def run_case(
         )
     except (RuntimeError, ValueError, OSError) as error:
         record["error_type"] = type(error).__name__
-        structlog.wrap_logger(logger).error("experiment_failed", status="error")
+        if isinstance(error, CodexFailure):
+            record.update(
+                error_code=error.code,
+                error_message=str(error),
+                diagnostics=error.diagnostics,
+            )
+        else:
+            record.update(
+                error_code="execution_error",
+                error_message="応答の処理またはファイル保存に失敗しました。",
+            )
+        structlog.wrap_logger(logger).error(
+            "experiment_failed", status="error", error_code=record["error_code"]
+        )
     record.update(
         requests=len(backend.records),
+        cli_attempts=sum(len(row["attempts"]) for row in backend.records),
         elapsed_seconds=round(perf_counter() - started, 3),
     )
     write_json(directory / "model_requests.json", backend.records)
@@ -159,32 +174,55 @@ async def run_case(
     return record
 
 
-async def run_experiment(settings: CodexSettings, questions: list[str]) -> Path:
-    """全質問を独立した会話で実行し、同条件の比較結果を保存する。"""
-    directory = (
-        PROJECT_ROOT
-        / "output"
-        / datetime.now(ZoneInfo("Asia/Tokyo")).strftime("%Y%m%d-%H%M%S")
+async def run_experiment(
+    settings: CodexSettings, questions: list[str], run_name: str
+) -> Path:
+    """成功結果を再利用し、失敗や未実行のケースを実行する。"""
+    directory = prepare_run(
+        PROJECT_ROOT / "output",
+        run_name,
+        settings,
+        questions,
+        codex_version("codex", settings.timeout_seconds),
     )
-    directory.mkdir(parents=True)
-    write_json(
-        directory / "settings.json",
-        {
-            **asdict(settings),
-            "codex_version": codex_version("codex", settings.timeout_seconds),
-            "questions": questions,
-        },
-    )
+    print("実行フォルダ:", directory, flush=True)
+    with run_lock(directory):
+        await run_cases(directory, settings, questions)
+    return directory
+
+
+async def run_cases(
+    directory: Path, settings: CodexSettings, questions: list[str]
+) -> None:
+    """全ケースの結果を保存し、失敗が残る場合はエラーで終了する。"""
     records = []
+    failures = []
     for index, question in enumerate(questions, start=1):
         for mode in ("plain", "pydantic", "adk"):
-            print(f"[{mode}] {index}/{len(questions)}: {question}", flush=True)
             case_dir = directory / f"{index:02}_{mode}"
-            record = await run_case(mode, question, settings, case_dir)
+            record = saved_success(case_dir, mode, question)
+            if record is None:
+                archive_case(case_dir)
+                print(f"[{mode}] {index}/{len(questions)}: {question}", flush=True)
+                record = await run_case(mode, question, settings, case_dir)
+            else:
+                print(
+                    f"[{mode}] {index}/{len(questions)}: 保存済みの成功結果を使用",
+                    flush=True,
+                )
             record["directory"] = case_dir.name
             records.append(record)
             write_json(directory / "summary.json", records)
             if record["status"] != "success":
-                raise RuntimeError(f"実行に失敗しました。記録: {case_dir}")
+                failures.append(case_dir.name)
+                print(
+                    f"[error] {record['error_code']}: {record['error_message']}",
+                    flush=True,
+                )
+                if record["error_code"] in FATAL_CODES:
+                    raise RuntimeError(f"起動条件を確認してください。記録: {case_dir}")
+    if failures:
+        raise RuntimeError(
+            f"失敗したケース: {', '.join(failures)}。同じ実行フォルダで再開できます: {directory}"
+        )
     structlog.wrap_logger(logger).info("experiment_finished", status="success")
-    return directory

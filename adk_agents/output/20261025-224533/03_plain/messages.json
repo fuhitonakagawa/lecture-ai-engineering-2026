@@ -1,0 +1,55 @@
+[
+  {
+    "parts": [
+      {
+        "content": "LoRAとQLoRAの違いは？",
+        "timestamp": "2026-10-25T13:46:24.881604Z",
+        "part_kind": "user-prompt"
+      }
+    ],
+    "timestamp": "2026-10-25T13:46:24.881808Z",
+    "instructions": "日本語で質問に回答してください。分からないことは推測で断定しないでください。",
+    "kind": "request",
+    "run_id": "01a1734f-fef0-77c9-8f06-590b66169c86",
+    "conversation_id": "01a1734f-fef0-77c9-8f06-590cce28e9b4",
+    "metadata": null,
+    "state": "complete"
+  },
+  {
+    "parts": [
+      {
+        "content": "LoRAとQLoRAは、どちらも大規模言語モデルを少ない計算資源で追加学習する方法です。\n\n- **LoRA**：元のモデルの重みは固定し、追加した小さな行列（アダプター）のみを学習します。学習に使うメモリを抑えられます。\n- **QLoRA**：モデル本体の重みを低ビット（一般に4ビット）で量子化してメモリ使用量をさらに減らしつつ、LoRAアダプターを学習します。\n\nつまり、QLoRAは「量子化したモデルにLoRAを適用する方法」です。より限られたGPUメモリで大きなモデルを扱いやすい一方、量子化による計算や品質への影響があり得ます。",
+        "id": null,
+        "provider_name": null,
+        "provider_details": null,
+        "part_kind": "text"
+      }
+    ],
+    "usage": {
+      "input_tokens": 18976,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 220,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "audio_seconds": 0.0,
+      "details": {},
+      "cost": "0.0020076"
+    },
+    "model_name": "gpt-6-luna",
+    "timestamp": "2026-10-25T13:46:29.242908Z",
+    "kind": "response",
+    "provider_name": null,
+    "provider_url": null,
+    "provider_details": null,
+    "provider_response_id": null,
+    "finish_reason": null,
+    "run_id": "01a1734f-fef0-77c9-8f06-590b66169c86",
+    "conversation_id": "01a1734f-fef0-77c9-8f06-590cce28e9b4",
+    "metadata": null,
+    "workspace_ref": null,
+    "failed_attempts": null,
+    "state": "complete"
+  }
+]

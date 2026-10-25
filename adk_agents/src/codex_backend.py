@@ -15,6 +15,12 @@ import structlog
 from pydantic import BaseModel, ConfigDict, model_validator
 
 from src.config.settings import CodexSettings
+from src.codex_errors import (
+    RETRYABLE_CODES,
+    CodexFailure,
+    classify_process_error,
+    output_diagnostics,
+)
 from src.utils.codex_cli import EXEC_OPTIONS, ParsedResponse, parse_response
 
 logger = logging.getLogger(__name__)
@@ -81,27 +87,29 @@ class CodexBackend:
             ValueError: 未登録関数や不正な引数を含む応答。
         """
         if len(self.records) >= self.settings.max_requests:
-            raise RuntimeError("LLM呼び出し回数の上限に達しました。")
+            raise CodexFailure("request_limit", {})
         payload = {"instructions": instructions, "messages": messages, "tools": tools}
         prompt = PROTOCOL + "\n" + json.dumps(payload, ensure_ascii=False)
         started = perf_counter()
-        record: dict[str, Any] = {"request": len(self.records) + 1, "status": "error"}
+        record: dict[str, Any] = {
+            "request": len(self.records) + 1,
+            "status": "error",
+            "attempts": [],
+        }
         self.records.append(record)
-        response = await asyncio.to_thread(self._execute, prompt)
-        if response.tool_types:
-            raise RuntimeError(
-                "Codexがアプリ外のツールを使用したため評価を停止します。"
-            )
-        decision = ModelDecision.model_validate_json(response.answer)
-        allowed = {tool["name"] for tool in tools}
-        for call in decision.tool_calls:
-            if call.name not in allowed:
-                raise ValueError(f"未登録のツールです: {call.name}")
-            if not isinstance(json.loads(call.arguments), dict):
-                raise ValueError("ツール引数はJSONオブジェクトが必要です。")
+        try:
+            response = await self._execute_with_retries(prompt, record)
+            decision = validate_decision(response, tools)
+        except CodexFailure as error:
+            record.update(error_code=error.code, diagnostics=error.diagnostics)
+            raise
+        except ValueError:
+            record["error_code"] = "invalid_response"
+            raise
+        finally:
+            record["elapsed_seconds"] = round(perf_counter() - started, 3)
         record.update(
             status="success",
-            elapsed_seconds=round(perf_counter() - started, 3),
             usage=response.usage,
             decision=decision.model_dump(),
         )
@@ -110,11 +118,45 @@ class CodexBackend:
         )
         return decision, response.usage
 
+    async def _execute_with_retries(
+        self, prompt: str, record: dict[str, Any]
+    ) -> ParsedResponse:
+        """一時的な通信失敗だけを上限回数まで再試行する。"""
+        for number in range(1, self.settings.max_attempts + 1):
+            attempt: dict[str, Any] = {"attempt": number, "status": "error"}
+            record["attempts"].append(attempt)
+            started = perf_counter()
+            structlog.wrap_logger(logger).info(
+                "model_request_started", request=record["request"], attempt=number
+            )
+            try:
+                response = await asyncio.to_thread(self._execute, prompt)
+                attempt.update(status="success", usage=response.usage)
+                return response
+            except CodexFailure as error:
+                attempt.update(error_code=error.code, diagnostics=error.diagnostics)
+                structlog.wrap_logger(logger).warning(
+                    "model_request_failed",
+                    request=record["request"],
+                    attempt=number,
+                    error_code=error.code,
+                    **error.diagnostics,
+                )
+                if (
+                    error.code not in RETRYABLE_CODES
+                    or number == self.settings.max_attempts
+                ):
+                    raise
+            finally:
+                attempt["elapsed_seconds"] = round(perf_counter() - started, 3)
+            await asyncio.sleep(self.settings.retry_delay_seconds)
+        raise ValueError("max_attemptsには正の整数が必要です。")
+
     def _execute(self, prompt: str) -> ParsedResponse:
         """一時ディレクトリでCodexを実行し、JSONLの応答を検証する。"""
         executable = shutil.which("codex")
         if executable is None:
-            raise RuntimeError("Codex CLIをインストールし、ログインしてください。")
+            raise CodexFailure("cli_missing", {})
         with TemporaryDirectory(prefix="aie-codex-") as directory:
             schema_path = Path(directory) / "response.schema.json"
             schema_path.write_text(
@@ -142,17 +184,36 @@ class CodexBackend:
                     timeout=self.settings.timeout_seconds,
                     check=False,
                 )
-            except subprocess.TimeoutExpired:
-                raise RuntimeError("Codexの応答が制限時間を超えました。") from None
+            except subprocess.TimeoutExpired as error:
+                raise CodexFailure(
+                    "timeout", output_diagnostics(error.output)
+                ) from None
+            except PermissionError:
+                raise CodexFailure("permission_denied", {}) from None
         if result.returncode:
-            if (
-                "Operation not permitted" in result.stderr
-                or "Permission denied" in result.stderr
-            ):
-                raise RuntimeError(
-                    "この実行環境ではCodexを起動する権限がありません。ローカルの通常のターミナルで実行してください。"
-                )
-            raise RuntimeError(
-                "Codex CLIが失敗しました。ログインとモデル設定を確認してください。"
+            raise CodexFailure(
+                classify_process_error(result.stderr),
+                {"exit_code": result.returncode, **output_diagnostics(result.stdout)},
             )
-        return parse_response(result.stdout)
+        try:
+            return parse_response(result.stdout)
+        except ValueError:
+            raise CodexFailure(
+                "invalid_response", output_diagnostics(result.stdout)
+            ) from None
+
+
+def validate_decision(
+    response: ParsedResponse, tools: list[dict[str, Any]]
+) -> ModelDecision:
+    """外部ツール利用と、関数名・引数・最終回答の形式を検証する。"""
+    if response.tool_types:
+        raise CodexFailure("external_tools_used", {})
+    decision = ModelDecision.model_validate_json(response.answer)
+    allowed = {tool["name"] for tool in tools}
+    for call in decision.tool_calls:
+        if call.name not in allowed:
+            raise ValueError(f"未登録のツールです: {call.name}")
+        if not isinstance(json.loads(call.arguments), dict):
+            raise ValueError("ツール引数はJSONオブジェクトが必要です。")
+    return decision

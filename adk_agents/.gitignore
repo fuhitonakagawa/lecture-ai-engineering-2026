@@ -7,6 +7,7 @@ __pycache__/
 .coverage
 htmlcov/
 .adk/
+.run.lock
 
 # 個人の設定と認証情報。
 .env

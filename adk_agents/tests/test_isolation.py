@@ -29,7 +29,7 @@ from src.tools import make_quiz
 
 assert importlib.util.find_spec("app") is None
 assert json.loads(make_quiz(2))["lecture"] == 2
-assert len(build_adk_agent(CodexSettings("test", "low", 10, 2)).tools) == 3
+assert len(build_adk_agent(CodexSettings("test", "low", 10, 2, 2, 0)).tools) == 3
 assert agent is not None
 """
     result = subprocess.run(

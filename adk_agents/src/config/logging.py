@@ -18,10 +18,28 @@ def normalize_event(
     """許可された診断項目だけを出力し、本文や例外の値を伏せる。"""
     name = event.get("logger", getattr(logger, "name", ""))
     event_name = event.get("event", "")
-    allowed_events = {"model_request", "experiment_finished", "experiment_failed"}
+    allowed_events = {
+        "model_request",
+        "model_request_started",
+        "model_request_failed",
+        "experiment_finished",
+        "experiment_failed",
+    }
     sanitized = {
         key: event[key]
-        for key in ("logger", "level", "correlation_id", "request", "status")
+        for key in (
+            "logger",
+            "level",
+            "correlation_id",
+            "request",
+            "status",
+            "attempt",
+            "error_code",
+            "last_event",
+            "last_item_type",
+            "output_bytes",
+            "exit_code",
+        )
         if key in event
     }
     sanitized["event"] = (

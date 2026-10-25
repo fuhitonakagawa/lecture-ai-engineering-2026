@@ -35,7 +35,8 @@ def print_trace(trace: list[dict[str, Any]], backend: CodexBackend) -> None:
             print(f"[tool call] {event['name']}({event['args']})")
         else:
             print(f"[tool return] {event['name']} -> {event['content']}")
-    print(f"[usage] requests={len(backend.records)}")
+    attempts = sum(len(record["attempts"]) for record in backend.records)
+    print(f"[usage] requests={len(backend.records)} cli_attempts={attempts}")
 
 
 async def run() -> None:
@@ -44,7 +45,9 @@ async def run() -> None:
     configure_logging()
     mode = required_setting("AIE_AGENT_MODE")
     if mode == "compare":
-        directory = await run_experiment(settings, questions_from_env())
+        directory = await run_experiment(
+            settings, questions_from_env(), required_setting("AIE_RUN_DIRECTORY")
+        )
         print("出力先:", directory)
         return
     if mode == "list_tools":

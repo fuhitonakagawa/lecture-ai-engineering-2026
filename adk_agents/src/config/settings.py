@@ -17,6 +17,8 @@ class CodexSettings:
     reasoning_effort: str
     timeout_seconds: int
     max_requests: int
+    max_attempts: int
+    retry_delay_seconds: int
 
 
 def required_setting(name: str) -> str:
@@ -56,4 +58,6 @@ def load_codex_settings() -> CodexSettings:
         reasoning_effort=required_setting("AIE_CODEX_REASONING_EFFORT"),
         timeout_seconds=positive_setting("AIE_CODEX_TIMEOUT_SECONDS"),
         max_requests=positive_setting("AIE_CODEX_MAX_REQUESTS"),
+        max_attempts=positive_setting("AIE_CODEX_MAX_ATTEMPTS"),
+        retry_delay_seconds=positive_setting("AIE_CODEX_RETRY_DELAY_SECONDS"),
     )

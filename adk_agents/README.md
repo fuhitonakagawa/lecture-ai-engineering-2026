@@ -43,11 +43,22 @@ codex login status
 ### 2.2. 比較実験
 
 ```bash
-AIE_AGENT_MODE=compare uv run python -m src.main
+AIE_AGENT_MODE=compare AIE_RUN_DIRECTORY=new uv run python -m src.main
 ```
 
 4問を3方式でそれぞれ独立した会話として実行し、12ケースの回答とトレースを保存する。
 質問の配列は `.env` の `AIE_EXPERIMENT_QUESTIONS` で指定する。
+
+途中で失敗した実験は、`.env` の `AIE_RUN_DIRECTORY` に `output/` 配下の実行フォルダ名を指定して再開する。
+
+```bash
+AIE_AGENT_MODE=compare uv run python -m src.main
+```
+
+成功したケースは保存済みの回答を使用し、失敗・中断・未実行のケースを実行する。
+失敗・中断したケースのファイルは `history/` に保持する。
+モデル・推論の強さ・要求上限・CLIの版・質問が保存時と異なる場合は、同じ実験に混ぜずエラーになる。
+同じ実験フォルダへの同時実行は `.run.lock` で拒否する。
 
 ### 2.3. 単独の質問
 
@@ -108,6 +119,9 @@ Web用のセッションと成果物は `.adk/` に保存され、Gitの管理�
 | `AIE_CODEX_REASONING_EFFORT` | モデルが対応する推論の強さ | 全モード |
 | `AIE_CODEX_TIMEOUT_SECONDS` | 1回の応答の制限時間。正の整数、秒単位 | 全モード |
 | `AIE_CODEX_MAX_REQUESTS` | 1質問あたりのモデル要求数の上限。正の整数 | 全モード |
+| `AIE_CODEX_MAX_ATTEMPTS` | 1つのモデル要求に対する最大試行回数。正の整数 | 全モード |
+| `AIE_CODEX_RETRY_DELAY_SECONDS` | 再試行前の待機時間。正の整数、秒単位 | 全モード |
+| `AIE_RUN_DIRECTORY` | `new` または再開する実行フォルダ名 | `compare` |
 | `AIE_AGENT_MODE` | `compare` / `local` / `adk` / `plain` / `list_tools` | CLI |
 | `AIE_QUESTION` | 空でない質問文 | `local` / `adk` / `plain` |
 | `AIE_TRACE` | `true` / `false` | `local` / `adk` / `plain` |
@@ -151,7 +165,9 @@ adk_agents/
 │   ├── agent.py                 # 共通の指示とPydantic AIのツール登録
 │   ├── adk_agent.py             # ADKのエージェントとモデル変換
 │   ├── codex_backend.py         # Codex呼び出しと応答の検証
+│   ├── codex_errors.py          # エラー分類と本文を含めない診断情報
 │   ├── codex_model.py           # Pydantic AIのモデル変換
+│   ├── experiment_storage.py    # 実験の再開・ロック・失敗履歴
 │   ├── tools.py                 # 用語検索・講義要約・確認問題
 │   ├── config/
 │   │   ├── __init__.py
@@ -166,6 +182,7 @@ adk_agents/
 │   ├── helpers.py
 │   ├── test_agent.py
 │   ├── test_codex_backend.py
+│   ├── test_experiment_storage.py
 │   ├── test_isolation.py
 │   ├── test_main.py
 │   ├── test_pipeline.py
@@ -191,17 +208,22 @@ adk_agents/
 | `NN_MODE/trace.json` | 関数呼び出し・引数・返り値 |
 | `NN_MODE/messages.json` | Pydantic AIの会話履歴、またはADKのイベント |
 | `NN_MODE/model_requests.json` | Codexの各要求の成否、使用量、構造化出力 |
-| `NN_MODE/result.json` | 1ケースの成否、時間、要求回数 |
+| `NN_MODE/result.json` | 1ケースの成否、時間、要求回数、エラー分類 |
+| `NN_MODE/execution_settings.json` | 当該ケースの設定。待機時間と再試行設定を含む |
+| `history/NN_MODE/連番/` | 再実行対象となった失敗・中断ケースのファイル |
 
-`requests` はフレームワークからのモデル要求数、つまりCodex execの起動回数。
-Codex内部の非公開な通信回数とは区別する。
+`requests` はフレームワークからのモデル要求数。`cli_attempts` は再試行も含めたCodex execの起動回数。
+`model_requests.json` の `attempts` に各試行の成否・時間・診断情報を残す。
+タイムアウトした試行のトークン使用量は不明であり、ゼロとはみなさない。
+Codex内部の非公開な通信回数は観測対象に含めない。
 モデルの回答や使用量は実行結果だけを根拠とし、テスト用のダミー回答を実測に含めない。
 
 ## 🔐 6. 制約とログ
 
 - **ツール**：登録された3関数だけをフレームワークが実行する。Codex自身の組み込みツールを使った応答は比較から除外する。
 - **Codexの起動**：一時ディレクトリ・読み取り専用sandboxで実行する。CLIの起動権限、ログイン、モデル利用権限が必要。
-- **エラー**：タイムアウト、不正なJSON、未登録の関数、起動失敗、要求回数の超過を成功として扱わない。比較実験は失敗したケースの記録を保存して停止する。
+- **再試行**：タイムアウト・通信切断・利用制限だけを最大試行回数まで再試行する。権限・認証・不正な応答の失敗は自動で繰り返さない。
+- **エラー**：失敗理由と、最後に観測したイベントの種類を保存する。権限・認証・CLIの不足では実験を停止する。他のケース単位の失敗では残りのケースを実行し、最後に失敗があればエラーで終了する。
 - **ログ**：標準エラーに1行JSONを出力する。JSTの時刻、logger名、レベル、相関IDを含める。許可した診断項目だけを出力し、例外の値はマスクする。
 - **設定の保管**：個人の `.env` とWeb用のセッションはGitの管理対象外。
 
@@ -216,5 +238,6 @@ uv run pytest tests/ -q
 - **ツールの正解**：指定回の用語と定義の一致、存在しない回の案内。
 - **会話ループ**：両フレームワークでの関数呼び出し、返り値、次のモデル入力。
 - **Codex接続**：JSON Schema、標準入力、読み取り専用sandbox、タイムアウト、起動権限、利用上限。
+- **再試行と再開**：同じ入力での再試行、権限エラー時の停止、成功結果の保持、失敗履歴、実行条件の一致、同時実行の拒否。
 - **設定の分離**：作業ディレクトリに依存しない専用.envの参照、必須値の不足、環境変数の優先。
 - **ログ**：許可されていない本文や例外値を出力しないこと。

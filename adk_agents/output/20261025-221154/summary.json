@@ -41,5 +41,59 @@
     "requests": 2,
     "elapsed_seconds": 12.169,
     "directory": "01_adk"
+  },
+  {
+    "mode": "plain",
+    "question": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+    "status": "success",
+    "tool_calls": [],
+    "requests": 1,
+    "cli_attempts": 1,
+    "elapsed_seconds": 52.82,
+    "directory": "02_plain"
+  },
+  {
+    "mode": "pydantic",
+    "question": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "lecNN-start タグ"
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 9.901,
+    "directory": "02_pydantic"
+  },
+  {
+    "mode": "adk",
+    "question": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+    "status": "error",
+    "error_type": "CodexFailure",
+    "error_code": "timeout",
+    "error_message": "Codexの応答が制限時間を超えました。",
+    "diagnostics": {
+      "output_bytes": 101,
+      "last_event": "turn.started"
+    },
+    "requests": 2,
+    "cli_attempts": 3,
+    "elapsed_seconds": 369.82,
+    "directory": "02_adk"
+  },
+  {
+    "mode": "plain",
+    "question": "LoRAとQLoRAの違いは？",
+    "status": "success",
+    "tool_calls": [],
+    "requests": 1,
+    "cli_attempts": 2,
+    "elapsed_seconds": 236.802,
+    "directory": "03_plain"
   }
 ]

@@ -4,8 +4,8 @@
 
 ### 実験条件
 
-比較対象は [保存結果](../../mcp_agents/output/20261026-001328/) の6ケース。
-[設定](../../mcp_agents/output/20261026-001328/settings.json)は `gpt-6-luna`、推論 `low`、Codex CLI `0.164.0`。各ケースは独立した会話とする。
+比較対象は [保存結果](../../mcp_agents/output/20261026-004541/) の6ケース。
+[設定](../../mcp_agents/output/20261026-004541/settings.json)は `gpt-6-luna`、推論 `low`、Codex CLI `0.164.0`。各ケースは独立した会話とする。
 サーバーはMCP Python SDKの `MCPServer`、クライアントはPydantic AIで、モデルへの接続はCodex execを使う。
 
 6ケースすべてが `success` で、各ケースのモデル要求は2回、CLIの起動も2回だった。自動再試行は発生していない。
@@ -23,22 +23,24 @@
 | `make_quiz` | `glossary_make_quiz` | `lecture: int` | 指定回の確認問題と正解を取得 |
 
 MCP経由では、設定ファイルのサーバー名 `glossary` が接頭辞になる。
-[直接登録の定義](../../mcp_agents/output/20261026-001328/01_direct/tools.json)と[MCPの定義](../../mcp_agents/output/20261026-001328/02_stdio/tools.json)は、名前・説明・引数を持つ点が共通する。
+[直接登録の定義](../../mcp_agents/output/20261026-004541/01_direct/tools.json)と[MCPの定義](../../mcp_agents/output/20261026-004541/02_stdio/tools.json)は、名前・説明・引数を持つ点が共通する。
 引数名と型は対応しているが、JSON Schemaの `title` や `additionalProperties` には表現上の差があり、定義全体が完全に同一というわけではない。
-stdioとHTTPで取得したMCPのツール定義は一致していた。
+stdioとHTTPで、用語検索・講義要約のツール定義と、3ツールの引数Schemaは一致していた。
+ただし `make_quiz` の説明には差があり、stdio側にある「文字列や真偽値は不可」という記載がHTTP側にはない。
+そのため、MCPの定義全体が完全に一致したとは扱わない。
 
 ### ツール呼び出しと結果
 
-[summary.json](../../mcp_agents/output/20261026-001328/summary.json)と各ケースの `trace.json` を比較する。
+[summary.json](../../mcp_agents/output/20261026-004541/summary.json)と各ケースの `trace.json` を比較する。
 
 | ケース | 質問・条件 | ツール名と引数 | `requests` | 経過時間（秒） |
 | --- | --- | --- | ---: | ---: |
-| `01_direct` | 宿題の3レベル・直接登録 | `search_glossary(query="3レベル")` | 2 | 14.926 |
-| `02_stdio` | 同じ質問・stdio | `glossary_search_glossary(query="3レベル")` | 2 | 10.953 |
-| `03_http` | 同じ質問・HTTP | `glossary_search_glossary(query="3レベル")` | 2 | 12.873 |
-| `04_brief` | 第2回の学習内容・短い説明 | `glossary_get_lecture_summary(lecture=2)` | 2 | 12.984 |
-| `05_detailed` | 同じ質問・詳しい説明 | `glossary_get_lecture_summary(lecture=2)` | 2 | 13.132 |
-| `06_fetch` | 公式ページの3行要約 | `fetch_fetch(url=公式Markdownページ)` | 2 | 17.589 |
+| `01_direct` | 宿題の3レベル・直接登録 | `search_glossary(query="3レベル")` | 2 | 9.336 |
+| `02_stdio` | 同じ質問・stdio | `glossary_search_glossary(query="3レベル")` | 2 | 9.520 |
+| `03_http` | 同じ質問・HTTP | `glossary_search_glossary(query="3レベル")` | 2 | 10.563 |
+| `04_brief` | 第2回の学習内容・短い説明 | `glossary_get_lecture_summary(lecture=2)` | 2 | 9.992 |
+| `05_detailed` | 同じ質問・詳しい説明 | `glossary_get_lecture_summary(lecture=2)` | 2 | 10.995 |
+| `06_fetch` | 公式ページの3行要約 | `fetch_fetch(url=公式Markdownページ)` | 2 | 13.092 |
 
 いずれも1回目のモデル要求でツールを選び、その返り値を受け取った2回目の要求で回答を生成した。
 
@@ -54,28 +56,26 @@ stdioとHTTPで取得したMCPのツール定義は一致していた。
 - `get_lecture_summary`：指定した回の資料を返すツール。説明文の短い版と詳しい版を基礎課題で比較する。
 - `make_quiz`：指定した回の理解度確認や復習に使い、問題と正解を返すツール。
 
-講義要約の[呼び出し履歴](../../mcp_agents/output/20261026-001328/04_brief/trace.json)には `lecture: 2` が記録され、第2回のMarkdown資料が返っている。
+講義要約の[呼び出し履歴](../../mcp_agents/output/20261026-004541/04_brief/trace.json)には `lecture: 2` が記録され、第2回のMarkdown資料が返っている。
 最終回答は、事前学習とファインチューニングの違い、SFT、PEFT、LoRA、QLoRA、過学習への注意、Colabでの学習前後の比較を要約していた。
 
 ### fetchサーバー
 
 [fetch用設定](../../mcp_agents/config/fetch.json)では、用語集サーバーに既製のfetchサーバーを加える。
-[ツール一覧](../../mcp_agents/output/20261026-001328/06_fetch/tools.json)は3個から4個になり、`fetch_fetch` が見える。
+[ツール一覧](../../mcp_agents/output/20261026-004541/06_fetch/tools.json)は3個から4個になり、`fetch_fetch` が見える。
 取得対象は公式サイトのMarkdown版で、HTML変換を伴わず本文を確認できる。
 
-[実測した呼び出し](../../mcp_agents/output/20261026-001328/06_fetch/trace.json)の引数は次のとおり。
+[実測した呼び出し](../../mcp_agents/output/20261026-004541/06_fetch/trace.json)の引数は次のとおり。
 
 ```json
 {
   "url": "https://modelcontextprotocol.io/docs/getting-started/intro.md",
-  "max_length": 5000,
-  "start_index": 0,
-  "raw": false
+  "max_length": 5000
 }
 ```
 
 ツールの返り値には、MCPをAIアプリケーションと外部システムをつなぐ標準として説明するページ本文が含まれている。
-[最終回答](../../mcp_agents/output/20261026-001328/06_fetch/answer.md)は、オープンな標準であること、データ・ツール・ワークフローへの共通接続方式であること、情報へのアクセスと作業を可能にすることを日本語3行で要約していた。
+[最終回答](../../mcp_agents/output/20261026-004541/06_fetch/answer.md)は、オープンな標準であること、データ・ツール・ワークフローへの接続の共通化、開発の手間の削減と機能の拡張を日本語3行で要約していた。
 モデルが選んだURLをMCPツールが取得し、その内容を根拠に回答する流れを確認できた。
 
 ## 宿題
@@ -97,9 +97,9 @@ stdioは[設定ファイル](../../mcp_agents/config/stdio.json)のコマンド�
 | 終了 | クライアントの接続終了に伴って終了 | 利用者がサーバーを停止するまで待ち受ける |
 | モデルから見えるツール名 | `glossary_` 付き | 同じく `glossary_` 付き |
 
-起動ログではHTTPサーバーのPIDは24466だった。
-stdioでは用語検索のケースでPID 24870、短い説明のケースで25061、詳しい説明のケースで25177と、ケースごとにサーバープロセスが起動していた。
-HTTPのケースでは、事前に起動した同じサーバーへ接続している。
+stdioはケースごとに子プロセスを起動し、HTTPは別ターミナルの待ち受けサーバーへ接続する。
+今回のHTTP側には `make_quiz` の型制約に関する説明がないため、起動中のプロセスが別の定義を保持していた可能性がある。
+この比較で実際に呼び出した用語検索と講義要約の定義・返り値は一致しており、`make_quiz` の入力検証は下記のstdioによる実装検証を根拠とする。
 
 「宿題の3レベル」の検索では、stdioとHTTPでツールの名前・引数・返り値が一致し、モデル要求も両方2回だった。
 通信方式を変えても、モデルが利用するツールの役割と回答の要点は維持できた。
@@ -113,7 +113,7 @@ HTTPのケースでは、事前に起動した同じサーバーへ接続して�
 | 短い説明 | 「指定した回の資料を返す。」 |
 | 詳しい説明 | 講義回の学習内容を確認して要点のMarkdownを返す目的、質問例、用語検索・確認問題との役割分担、引数と返り値の説明 |
 
-[短い説明の定義](../../mcp_agents/output/20261026-001328/04_brief/tools.json)と[詳しい説明の定義](../../mcp_agents/output/20261026-001328/05_detailed/tools.json)では、説明文だけが異なり、引数のJSON Schemaは一致している。
+[短い説明の定義](../../mcp_agents/output/20261026-004541/04_brief/tools.json)と[詳しい説明の定義](../../mcp_agents/output/20261026-004541/05_detailed/tools.json)では、説明文だけが異なり、引数のJSON Schemaは一致している。
 
 「第2回では何を学びますか？」に対しては、両方とも `glossary_get_lecture_summary(lecture=2)` を選び、モデル要求2回で回答した。
 回答も同じ第2回の資料を根拠とし、説明する要点はほぼ同じだった。
@@ -177,7 +177,7 @@ MCPでは、関数の処理をサーバーとして公開することで、ク�
 stdioは子プロセスの起動と終了をクライアントに任せられる一方、HTTPでは独立したサーバーとポートを管理する必要がある。
 ツールの説明は接続方式が変わってもモデルへ届くため、用途や引数が伝わるdocstringを書くことが重要だと考える。
 
-経過時間はstdio 10.953秒、HTTP 12.873秒だったが、CLIの起動・モデルの生成・通信が含まれ、各条件は1試行である。
+経過時間はstdio 9.520秒、HTTP 10.563秒だったが、CLIの起動・モデルの生成・通信が含まれ、各条件は1試行である。
 この差から通信方式そのものの速度差や優劣は断定できない。
 また、説明文の比較でも単一の明確な質問を使っているため、曖昧な質問や複数回の観測では別の傾向になる可能性がある。
 

@@ -1,0 +1,92 @@
+[
+  {
+    "model": "gpt-6.1-sol",
+    "trial": 1,
+    "status": "success",
+    "exit_code": 0,
+    "usage": {
+      "input_tokens": 20218,
+      "cached_input_tokens": 0,
+      "output_tokens": 370,
+      "reasoning_output_tokens": 0
+    },
+    "tool_types": [],
+    "elapsed_seconds": 13.054,
+    "directory": "model_01/trial_01"
+  },
+  {
+    "model": "gpt-6-luna",
+    "trial": 1,
+    "status": "success",
+    "exit_code": 0,
+    "usage": {
+      "input_tokens": 15626,
+      "cached_input_tokens": 0,
+      "output_tokens": 162,
+      "reasoning_output_tokens": 0
+    },
+    "tool_types": [],
+    "elapsed_seconds": 4.326,
+    "directory": "model_02/trial_01"
+  },
+  {
+    "model": "gpt-6.1-sol",
+    "trial": 2,
+    "status": "success",
+    "exit_code": 0,
+    "usage": {
+      "input_tokens": 20218,
+      "cached_input_tokens": 0,
+      "output_tokens": 311,
+      "reasoning_output_tokens": 0
+    },
+    "tool_types": [],
+    "elapsed_seconds": 9.846,
+    "directory": "model_01/trial_02"
+  },
+  {
+    "model": "gpt-6-luna",
+    "trial": 2,
+    "status": "success",
+    "exit_code": 0,
+    "usage": {
+      "input_tokens": 18365,
+      "cached_input_tokens": 0,
+      "output_tokens": 180,
+      "reasoning_output_tokens": 0
+    },
+    "tool_types": [],
+    "elapsed_seconds": 4.959,
+    "directory": "model_02/trial_02"
+  },
+  {
+    "model": "gpt-6.1-sol",
+    "trial": 3,
+    "status": "success",
+    "exit_code": 0,
+    "usage": {
+      "input_tokens": 20218,
+      "cached_input_tokens": 0,
+      "output_tokens": 367,
+      "reasoning_output_tokens": 0
+    },
+    "tool_types": [],
+    "elapsed_seconds": 11.907,
+    "directory": "model_01/trial_03"
+  },
+  {
+    "model": "gpt-6-luna",
+    "trial": 3,
+    "status": "success",
+    "exit_code": 0,
+    "usage": {
+      "input_tokens": 18369,
+      "cached_input_tokens": 0,
+      "output_tokens": 156,
+      "reasoning_output_tokens": 0
+    },
+    "tool_types": [],
+    "elapsed_seconds": 3.63,
+    "directory": "model_02/trial_03"
+  }
+]

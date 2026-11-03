@@ -1,0 +1,63 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 39554,
+          "cached_input_tokens": 29440,
+          "output_tokens": 120,
+          "reasoning_output_tokens": 30
+        },
+        "elapsed_seconds": 4.99
+      }
+    ],
+    "elapsed_seconds": 4.99,
+    "usage": {
+      "input_tokens": 39554,
+      "cached_input_tokens": 29440,
+      "output_tokens": 120,
+      "reasoning_output_tokens": 30
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "glossary_get_lecture_summary",
+          "arguments": "{\"lecture\":2}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 18387,
+          "cached_input_tokens": 0,
+          "output_tokens": 195,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 4.649
+      }
+    ],
+    "elapsed_seconds": 4.649,
+    "usage": {
+      "input_tokens": 18387,
+      "cached_input_tokens": 0,
+      "output_tokens": 195,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "第2回は「ファインチューニングとLoRA」がテーマです。事前学習との違いや、ファインチューニングが適する用途（出力形式・口調・特定タスクの振る舞い）と適さない用途（新しい事実や頻繁に変わる情報の習得）を学びます。さらに、SFTやPEFT、LoRA・QLoRAの仕組み、過学習への注意点を扱い、Colabで小さなモデルをLoRA学習させる演習を行います。演習では学習前後のJSON形式の遵守率や回答の正確さも比べます。\n\n関連講義回：第2回「ファインチューニングとLoRA」",
+      "tool_calls": []
+    }
+  }
+]

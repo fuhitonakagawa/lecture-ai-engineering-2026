@@ -1,0 +1,8 @@
+{
+  "mode": "plain",
+  "question": "LoRAとは何ですか？",
+  "status": "success",
+  "tool_calls": [],
+  "requests": 1,
+  "elapsed_seconds": 11.951
+}

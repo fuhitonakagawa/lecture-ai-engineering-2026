@@ -1,0 +1,63 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 49207,
+          "cached_input_tokens": 19584,
+          "output_tokens": 78,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 7.327
+      }
+    ],
+    "elapsed_seconds": 7.327,
+    "usage": {
+      "input_tokens": 49207,
+      "cached_input_tokens": 19584,
+      "output_tokens": 78,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "search_glossary",
+          "arguments": "{\"query\":\"LoRA\"}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 20778,
+          "cached_input_tokens": 0,
+          "output_tokens": 113,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 3.81
+      }
+    ],
+    "elapsed_seconds": 3.81,
+    "usage": {
+      "input_tokens": 20778,
+      "cached_input_tokens": 0,
+      "output_tokens": 113,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "LoRA（Low-Rank Adaptation）は、事前学習済みモデルの重みを固定したまま、重みの更新分を2つの小さな行列の積で表し、その行列だけを学習するPEFT手法です。学習するパラメータが少なく、学習結果のアダプタも小さく保存できます。\n\n関係する回：第2回",
+      "tool_calls": []
+    }
+  }
+]

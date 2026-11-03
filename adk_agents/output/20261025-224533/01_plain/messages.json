@@ -1,0 +1,55 @@
+[
+  {
+    "parts": [
+      {
+        "content": "LoRAとは何ですか？",
+        "timestamp": "2026-10-25T13:45:33.916741Z",
+        "part_kind": "user-prompt"
+      }
+    ],
+    "timestamp": "2026-10-25T13:45:33.916911Z",
+    "instructions": "日本語で質問に回答してください。分からないことは推測で断定しないでください。",
+    "kind": "request",
+    "run_id": "01a1734f-37d5-7758-9e79-f2f06d729025",
+    "conversation_id": "01a1734f-37d5-7758-9e79-f2f1a7d61475",
+    "metadata": null,
+    "state": "complete"
+  },
+  {
+    "parts": [
+      {
+        "content": "LoRA（Low-Rank Adaptation）は、大規模な機械学習モデルを少ない計算資源で追加学習するための手法です。モデル本体の重みを固定し、一部の層に小さな学習可能パラメータを追加して調整します。学習するパラメータが少なくて済むため、通常の全パラメータ学習よりメモリや保存容量を抑えられます。",
+        "id": null,
+        "provider_name": null,
+        "provider_details": null,
+        "part_kind": "text"
+      }
+    ],
+    "usage": {
+      "input_tokens": 16231,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 125,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "audio_seconds": 0.0,
+      "details": {},
+      "cost": "0.0016856"
+    },
+    "model_name": "gpt-6-luna",
+    "timestamp": "2026-10-25T13:45:37.936382Z",
+    "kind": "response",
+    "provider_name": null,
+    "provider_url": null,
+    "provider_details": null,
+    "provider_response_id": null,
+    "finish_reason": null,
+    "run_id": "01a1734f-37d5-7758-9e79-f2f06d729025",
+    "conversation_id": "01a1734f-37d5-7758-9e79-f2f1a7d61475",
+    "metadata": null,
+    "workspace_ref": null,
+    "failed_attempts": null,
+    "state": "complete"
+  }
+]

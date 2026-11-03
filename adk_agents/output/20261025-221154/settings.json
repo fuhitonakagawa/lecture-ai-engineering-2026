@@ -1,0 +1,13 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "timeout_seconds": 180,
+  "max_requests": 6,
+  "codex_version": "codex-cli 0.164.0",
+  "questions": [
+    "LoRAとは何ですか？",
+    "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+    "LoRAとQLoRAの違いは？",
+    "第2回の内容から確認問題を1問出して"
+  ]
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "mode": "plain",
+    "question": "LoRAとは何ですか？",
+    "status": "success",
+    "tool_calls": [],
+    "requests": 1,
+    "elapsed_seconds": 11.914,
+    "directory": "01_plain"
+  },
+  {
+    "mode": "pydantic",
+    "question": "LoRAとは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "elapsed_seconds": 14.665,
+    "directory": "01_pydantic"
+  },
+  {
+    "mode": "adk",
+    "question": "LoRAとは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "LoRA"
+        }
+      }
+    ],
+    "requests": 2,
+    "elapsed_seconds": 59.693,
+    "directory": "01_adk"
+  },
+  {
+    "mode": "plain",
+    "question": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+    "status": "error",
+    "error_type": "RuntimeError",
+    "requests": 1,
+    "elapsed_seconds": 180.014,
+    "directory": "02_plain"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "mode": "pydantic",
+  "question": "LoRAとは何ですか？",
+  "status": "success",
+  "tool_calls": [
+    {
+      "kind": "call",
+      "name": "search_glossary",
+      "args": {
+        "query": "LoRA"
+      }
+    }
+  ],
+  "requests": 2,
+  "elapsed_seconds": 14.665
+}

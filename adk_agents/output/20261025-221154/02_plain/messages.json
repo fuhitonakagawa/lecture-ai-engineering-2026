@@ -1,0 +1,55 @@
+[
+  {
+    "parts": [
+      {
+        "content": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+        "timestamp": "2026-10-25T13:32:11.819439Z",
+        "part_kind": "user-prompt"
+      }
+    ],
+    "timestamp": "2026-10-25T13:32:11.819657Z",
+    "instructions": "日本語で質問に回答してください。分からないことは推測で断定しないでください。",
+    "kind": "request",
+    "run_id": "01a17342-faa4-7234-b92a-5bbb7f2f2689",
+    "conversation_id": "01a17342-faa4-7234-b92a-5bbcd5b1bae9",
+    "metadata": null,
+    "state": "complete"
+  },
+  {
+    "parts": [
+      {
+        "content": "「lecNN-start タグ」は、名前からは「第NN回の講義を始める時点のコード」を示すGitタグと考えられます。例えば `lec03-start` なら、第3回の開始用コードを指す、という命名です。\n\nただし、AIE2026の講座資料が提示されていないため、この講座での正確な定義や使い方は確認できません。該当する資料や説明文を共有いただければ、それに沿って説明できます。",
+        "id": null,
+        "provider_name": null,
+        "provider_details": null,
+        "part_kind": "text"
+      }
+    ],
+    "usage": {
+      "input_tokens": 20830,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 139,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "audio_seconds": 0.0,
+      "details": {},
+      "cost": "0.04305"
+    },
+    "model_name": "gpt-6.1-sol",
+    "timestamp": "2026-10-25T13:33:04.620814Z",
+    "kind": "response",
+    "provider_name": null,
+    "provider_url": null,
+    "provider_details": null,
+    "provider_response_id": null,
+    "finish_reason": null,
+    "run_id": "01a17342-faa4-7234-b92a-5bbb7f2f2689",
+    "conversation_id": "01a17342-faa4-7234-b92a-5bbcd5b1bae9",
+    "metadata": null,
+    "workspace_ref": null,
+    "failed_attempts": null,
+    "state": "complete"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 18987,
+          "cached_input_tokens": 0,
+          "output_tokens": 62,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 3.748
+      }
+    ],
+    "elapsed_seconds": 3.748,
+    "usage": {
+      "input_tokens": 18987,
+      "cached_input_tokens": 0,
+      "output_tokens": 62,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "この情報だけでは、「lecNN-start タグ」が何を指すのか分かりません。講座資料や利用しているシステム内での定義があれば、共有してください。",
+      "tool_calls": []
+    }
+  }
+]

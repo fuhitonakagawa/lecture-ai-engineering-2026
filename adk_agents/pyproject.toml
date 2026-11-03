@@ -1,0 +1,28 @@
+[project]
+name = "aie2026-adk-agents"
+version = "0.1.0"
+description = "Codex CLIによるPydantic AIとGoogle ADKの学習支援エージェント比較"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "google-adk==2.13.0",
+    "google-genai==2.31.0",
+    "pydantic-ai-slim==2.57.0",
+    "python-dotenv==1.2.4",
+    "structlog==26.1.0",
+]
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]
+
+[tool.uv]
+# トレースヘッダーの解析で過剰なCPU消費を防ぐ版を使用する。
+override-dependencies = [
+    "opentelemetry-api==1.45.1",
+    "opentelemetry-sdk==1.45.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning:pydantic_graph"]

@@ -1,0 +1,30 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 16239,
+          "cached_input_tokens": 13056,
+          "output_tokens": 50,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 3.07
+      }
+    ],
+    "elapsed_seconds": 3.071,
+    "usage": {
+      "input_tokens": 16239,
+      "cached_input_tokens": 13056,
+      "output_tokens": 50,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "第2回の内容がこちらでは確認できないため、資料やテーマを共有してください。それをもとに確認問題を1問出します。",
+      "tool_calls": []
+    }
+  }
+]

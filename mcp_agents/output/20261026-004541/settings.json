@@ -1,0 +1,17 @@
+{
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "timeout_seconds": 180,
+  "max_requests": 6,
+  "max_attempts": 2,
+  "retry_delay_seconds": 5,
+  "codex_version": "codex-cli 0.164.0",
+  "questions": [
+    "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "第2回では何を学びますか？",
+    "第2回では何を学びますか？",
+    "https://modelcontextprotocol.io/docs/getting-started/intro.md の冒頭を日本語で3行に要約して"
+  ]
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 38301,
+          "cached_input_tokens": 17152,
+          "output_tokens": 95,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 7.939
+      }
+    ],
+    "elapsed_seconds": 7.939,
+    "usage": {
+      "input_tokens": 38301,
+      "cached_input_tokens": 17152,
+      "output_tokens": 95,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "fetch_fetch",
+          "arguments": "{\"url\":\"https://modelcontextprotocol.io/docs/getting-started/intro.md\",\"max_length\":5000,\"start_index\":0,\"raw\":false}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 21627,
+          "cached_input_tokens": 0,
+          "output_tokens": 115,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 6.13
+      }
+    ],
+    "elapsed_seconds": 6.13,
+    "usage": {
+      "input_tokens": 21627,
+      "cached_input_tokens": 0,
+      "output_tokens": 115,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "MCP（Model Context Protocol）は、AIアプリケーションを外部システムにつなぐオープンな標準です。\nデータソースやツール、ワークフローに接続でき、USB-Cのように共通の接続方式を提供します。\nこれにより、AIアプリケーションやエージェントが情報にアクセスし、利用者に代わって作業できるようになります。",
+      "tool_calls": []
+    }
+  }
+]

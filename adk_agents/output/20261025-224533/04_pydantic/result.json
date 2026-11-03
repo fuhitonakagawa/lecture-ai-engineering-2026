@@ -1,0 +1,12 @@
+{
+  "mode": "pydantic",
+  "question": "第2回の内容から確認問題を1問出して",
+  "status": "error",
+  "error_type": "CodexFailure",
+  "error_code": "external_tools_used",
+  "error_message": "Codexがアプリ外のツールを使用したため評価を停止します。",
+  "diagnostics": {},
+  "requests": 1,
+  "cli_attempts": 1,
+  "elapsed_seconds": 5.822
+}

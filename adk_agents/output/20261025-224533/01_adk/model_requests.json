@@ -1,0 +1,30 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 58523,
+          "cached_input_tokens": 54400,
+          "output_tokens": 96,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 8.696
+      }
+    ],
+    "elapsed_seconds": 8.696,
+    "usage": {
+      "input_tokens": 58523,
+      "cached_input_tokens": 54400,
+      "output_tokens": 96,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "用語集にはないため、LoRAの定義は確認できません。関係する回も特定できません。",
+      "tool_calls": []
+    }
+  }
+]

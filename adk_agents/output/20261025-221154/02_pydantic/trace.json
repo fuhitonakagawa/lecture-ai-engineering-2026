@@ -1,0 +1,14 @@
+[
+  {
+    "kind": "call",
+    "name": "search_glossary",
+    "args": {
+      "query": "lecNN-start タグ"
+    }
+  },
+  {
+    "kind": "return",
+    "name": "search_glossary",
+    "content": "[{\"term\": \"lecNN-start タグ\", \"lecture\": 1, \"definition\": \"AIE2026の講座repoで、各回の演習開始時点のコードに付けているGitタグ（例：lec03-start）。前の回が終わっていなくても、このタグからブランチを作ればその回の演習を始められる。\", \"related\": [\"branch\"]}]"
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "content": {
+      "parts": [
+        {
+          "function_call": {
+            "id": "adk-07f5c39c-2c00-4618-ba1d-a2dbe4cebe58",
+            "args": {
+              "lecture": 2
+            },
+            "name": "make_quiz"
+          }
+        }
+      ],
+      "role": "model"
+    },
+    "partial": false,
+    "turn_complete": false,
+    "usage_metadata": {
+      "cached_content_token_count": 29568,
+      "candidates_token_count": 73,
+      "prompt_token_count": 33511
+    },
+    "invocation_id": "e-9ccba2c9-2222-4960-8932-d14c9638290a",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "long_running_tool_ids": [],
+    "id": "2714fcf3-5d7f-41b5-bbd0-09e10f69ddf7",
+    "timestamp": 1792936013.015889
+  },
+  {
+    "content": {
+      "parts": [
+        {
+          "function_response": {
+            "id": "adk-07f5c39c-2c00-4618-ba1d-a2dbe4cebe58",
+            "name": "make_quiz",
+            "response": {
+              "result": "{\"lecture\": 2, \"term\": \"事前学習\", \"question\": \"「事前学習」とは何ですか？ 自分の言葉で説明してください。\", \"answer\": \"大量の汎用テキストで、次のトークンを予測するようにモデルを学習させる最初の段階。言語の知識や一般的な常識の多くはここで身につく。\"}"
+            }
+          }
+        }
+      ],
+      "role": "user"
+    },
+    "invocation_id": "e-9ccba2c9-2222-4960-8932-d14c9638290a",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "id": "7a0d59d1-0f37-4957-9bca-02939109c6c1",
+    "timestamp": 1792936017.7549062
+  },
+  {
+    "content": {
+      "parts": [
+        {
+          "text": "第2回の確認問題です。\n\n「事前学習」とは何ですか？ 自分の言葉で説明してください。\n\nまずは自分で考えてみましょう。"
+        }
+      ],
+      "role": "model"
+    },
+    "partial": false,
+    "turn_complete": true,
+    "usage_metadata": {
+      "cached_content_token_count": 15744,
+      "candidates_token_count": 61,
+      "prompt_token_count": 19619
+    },
+    "invocation_id": "e-9ccba2c9-2222-4960-8932-d14c9638290a",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "id": "6dfd15f6-2171-46ee-8490-2919dc1e9e7f",
+    "timestamp": 1792936017.755831
+  }
+]

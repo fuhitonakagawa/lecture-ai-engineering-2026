@@ -1,0 +1,32 @@
+[
+  {
+    "content": {
+      "parts": [
+        {
+          "text": "用語集にはないため、LoRAの定義は確認できません。関係する回も特定できません。"
+        }
+      ],
+      "role": "model"
+    },
+    "partial": false,
+    "turn_complete": true,
+    "usage_metadata": {
+      "cached_content_token_count": 54400,
+      "candidates_token_count": 96,
+      "prompt_token_count": 58523
+    },
+    "invocation_id": "e-c199ba57-7f9b-4ffe-a813-ed8aba1b24a0",
+    "author": "study_agent",
+    "actions": {
+      "state_delta": {},
+      "artifact_delta": {},
+      "requested_auth_configs": {},
+      "requested_tool_confirmations": {}
+    },
+    "node_info": {
+      "path": "study_agent@1"
+    },
+    "id": "b3ab7950-86f9-495c-bbc2-c990a7cbd8b7",
+    "timestamp": 1792935949.3499362
+  }
+]

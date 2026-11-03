@@ -1,0 +1,55 @@
+[
+  {
+    "parts": [
+      {
+        "content": "LoRAとQLoRAの違いは？",
+        "timestamp": "2026-10-25T13:39:24.354722Z",
+        "part_kind": "user-prompt"
+      }
+    ],
+    "timestamp": "2026-10-25T13:39:24.354949Z",
+    "instructions": "日本語で質問に回答してください。分からないことは推測で断定しないでください。",
+    "kind": "request",
+    "run_id": "01a17349-9441-75d8-a4e0-eb4ccac03a14",
+    "conversation_id": "01a17349-9441-75d8-a4e0-eb4d950b02a7",
+    "metadata": null,
+    "state": "complete"
+  },
+  {
+    "parts": [
+      {
+        "content": "**LoRAは学習するパラメータを減らす手法、QLoRAはさらに元モデルを量子化してメモリを節約する手法**です。\n\n| 観点 | LoRA | QLoRA |\n|---|---|---|\n| 基本方式 | 元モデルを固定し、小さな追加パラメータだけを学習 | 量子化した元モデルを固定し、LoRAの追加パラメータを学習 |\n| 元モデルの精度 | 通常はFP16やBF16など | 主に4ビット（NF4） |\n| GPUメモリ | 全パラメータ学習より少ない | 通常のLoRAよりさらに少ない |\n| 学習速度 | 比較的シンプルな処理 | 量子化に伴う処理があり、必ず速くなるわけではない |\n| 品質 | 条件によって変わる | LoRAに近い品質を狙えるが、同等とは限らない |\n\nどちらも、元モデルの重み自体は更新しません。QLoRAでも、学習する追加パラメータまで4ビットになるわけではありません。\n\n**GPUメモリに余裕があればLoRA、メモリを抑えて大きなモデルを調整したいならQLoRA**が選択の目安です。",
+        "id": null,
+        "provider_name": null,
+        "provider_details": null,
+        "part_kind": "text"
+      }
+    ],
+    "usage": {
+      "input_tokens": 20830,
+      "cache_write_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 341,
+      "input_audio_tokens": 0,
+      "cache_audio_read_tokens": 0,
+      "output_audio_tokens": 0,
+      "audio_seconds": 0.0,
+      "details": {},
+      "cost": "0.04507"
+    },
+    "model_name": "gpt-6.1-sol",
+    "timestamp": "2026-10-25T13:43:21.097119Z",
+    "kind": "response",
+    "provider_name": null,
+    "provider_url": null,
+    "provider_details": null,
+    "provider_response_id": null,
+    "finish_reason": null,
+    "run_id": "01a17349-9441-75d8-a4e0-eb4ccac03a14",
+    "conversation_id": "01a17349-9441-75d8-a4e0-eb4d950b02a7",
+    "metadata": null,
+    "workspace_ref": null,
+    "failed_attempts": null,
+    "state": "complete"
+  }
+]

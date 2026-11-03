@@ -1,0 +1,17 @@
+{
+  "mode": "adk",
+  "question": "第2回の内容から確認問題を1問出して",
+  "status": "success",
+  "tool_calls": [
+    {
+      "kind": "call",
+      "name": "make_quiz",
+      "args": {
+        "lecture": 2
+      }
+    }
+  ],
+  "requests": 2,
+  "cli_attempts": 2,
+  "elapsed_seconds": 8.87
+}

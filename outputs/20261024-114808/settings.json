@@ -1,0 +1,25 @@
+{
+  "models": [
+    "gpt-6.1-sol",
+    "gpt-6-luna"
+  ],
+  "repeats": 3,
+  "reasoning_effort": "medium",
+  "timeout_seconds": 180,
+  "codex_version": "codex-cli 0.164.0",
+  "exec_options": [
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--skip-git-repo-check",
+    "--sandbox",
+    "read-only",
+    "--color",
+    "never",
+    "--json",
+    "-c",
+    "web_search=\"disabled\"",
+    "-c",
+    "project_doc_max_bytes=0"
+  ]
+}

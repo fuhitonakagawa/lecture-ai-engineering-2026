@@ -1,0 +1,8 @@
+{
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "timeout_seconds": 180,
+  "max_requests": 6,
+  "max_attempts": 2,
+  "retry_delay_seconds": 5
+}

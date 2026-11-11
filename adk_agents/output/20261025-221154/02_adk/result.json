@@ -1,0 +1,15 @@
+{
+  "mode": "adk",
+  "question": "AIE2026の講座で使う「lecNN-start タグ」とは何ですか？",
+  "status": "error",
+  "error_type": "CodexFailure",
+  "error_code": "timeout",
+  "error_message": "Codexの応答が制限時間を超えました。",
+  "diagnostics": {
+    "output_bytes": 101,
+    "last_event": "turn.started"
+  },
+  "requests": 2,
+  "cli_attempts": 3,
+  "elapsed_seconds": 369.82
+}

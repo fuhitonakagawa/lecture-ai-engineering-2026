@@ -1,0 +1,30 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 18976,
+          "cached_input_tokens": 0,
+          "output_tokens": 220,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 4.361
+      }
+    ],
+    "elapsed_seconds": 4.361,
+    "usage": {
+      "input_tokens": 18976,
+      "cached_input_tokens": 0,
+      "output_tokens": 220,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "LoRAとQLoRAは、どちらも大規模言語モデルを少ない計算資源で追加学習する方法です。\n\n- **LoRA**：元のモデルの重みは固定し、追加した小さな行列（アダプター）のみを学習します。学習に使うメモリを抑えられます。\n- **QLoRA**：モデル本体の重みを低ビット（一般に4ビット）で量子化してメモリ使用量をさらに減らしつつ、LoRAアダプターを学習します。\n\nつまり、QLoRAは「量子化したモデルにLoRAを適用する方法」です。より限られたGPUメモリで大きなモデルを扱いやすい一方、量子化による計算や品質への影響があり得ます。",
+      "tool_calls": []
+    }
+  }
+]

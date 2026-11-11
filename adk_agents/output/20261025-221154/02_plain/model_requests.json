@@ -1,0 +1,30 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 20830,
+          "cached_input_tokens": 0,
+          "output_tokens": 139,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 52.79
+      }
+    ],
+    "elapsed_seconds": 52.791,
+    "usage": {
+      "input_tokens": 20830,
+      "cached_input_tokens": 0,
+      "output_tokens": 139,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "「lecNN-start タグ」は、名前からは「第NN回の講義を始める時点のコード」を示すGitタグと考えられます。例えば `lec03-start` なら、第3回の開始用コードを指す、という命名です。\n\nただし、AIE2026の講座資料が提示されていないため、この講座での正確な定義や使い方は確認できません。該当する資料や説明文を共有いただければ、それに沿って説明できます。",
+      "tool_calls": []
+    }
+  }
+]

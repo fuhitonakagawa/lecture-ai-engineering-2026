@@ -1,0 +1,63 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 19726,
+          "cached_input_tokens": 0,
+          "output_tokens": 35,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 3.088
+      }
+    ],
+    "elapsed_seconds": 3.088,
+    "usage": {
+      "input_tokens": 19726,
+      "cached_input_tokens": 0,
+      "output_tokens": 35,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "search_glossary",
+          "arguments": "{\"query\":\"LoRA\"}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 18059,
+          "cached_input_tokens": 0,
+          "output_tokens": 158,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 4.14
+      }
+    ],
+    "elapsed_seconds": 4.14,
+    "usage": {
+      "input_tokens": 18059,
+      "cached_input_tokens": 0,
+      "output_tokens": 158,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "LoRAは、事前学習済みモデルの重みを固定し、更新分を小さな低ランク行列で表して、その行列だけを学習する方法です。QLoRAは、ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習します。つまり、主な違いはベースモデルの重みを量子化して読み込むかどうかです。QLoRAはより大きなモデルを小さなGPUで扱いやすくなります。関係する回は第2回です。",
+      "tool_calls": []
+    }
+  }
+]

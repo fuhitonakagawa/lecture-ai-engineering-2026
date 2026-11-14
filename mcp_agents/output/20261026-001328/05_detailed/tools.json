@@ -1,0 +1,53 @@
+[
+  {
+    "name": "glossary_search_glossary",
+    "description": "講座の用語集から用語を検索し、定義と、どの回で扱うかを返す。\n\n    AIエンジニアリングの用語や、この講座（AIE2026）に固有の言葉について\n    答える前に使うこと。query には調べたい用語を1つだけ入れる（例: \"LoRA\"）。\n    ",
+    "parameters": {
+      "properties": {
+        "query": {
+          "title": "Query",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "type": "object",
+      "title": "search_glossaryArguments"
+    }
+  },
+  {
+    "name": "glossary_get_lecture_summary",
+    "description": "指定した講義回で何を学ぶかを確認するために、要点のMarkdownを返す。\n\n    「第2回では何を学びますか」「第3回の内容を教えて」のように、\n    回全体のテーマや学習内容を尋ねられたときに使う。\n    個別の用語の定義はsearch_glossary、確認問題の出題はmake_quizを使う。\n\n    Args:\n        lecture: 調べる講義回。1始まりの整数。\n\n    Returns:\n        講義の要点。未収録の回では利用可能な回の案内。\n    ",
+    "parameters": {
+      "properties": {
+        "lecture": {
+          "title": "Lecture",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "lecture"
+      ],
+      "type": "object",
+      "title": "get_lecture_summaryArguments"
+    }
+  },
+  {
+    "name": "glossary_make_quiz",
+    "description": "指定した回の理解を確かめる確認問題と、その正解を返す。\n\n    「第2回から確認問題を1問出して」のように、復習や理解度確認を\n    求められたときに使う。正解は出題後の答え合わせにも使える。\n\n    Args:\n        lecture: 問題の対象となる講義回。1始まりの整数。\n\n    Returns:\n        問題、用語、正解、講義回のJSON。該当する回がなければ案内文。\n    ",
+    "parameters": {
+      "properties": {
+        "lecture": {
+          "title": "Lecture",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "lecture"
+      ],
+      "type": "object",
+      "title": "make_quizArguments"
+    }
+  }
+]

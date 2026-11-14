@@ -1,0 +1,113 @@
+[
+  {
+    "mode": "01_direct",
+    "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "search_glossary",
+        "args": {
+          "query": "3レベル"
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 14.926,
+    "directory": "01_direct"
+  },
+  {
+    "mode": "02_stdio",
+    "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "glossary_search_glossary",
+        "args": {
+          "query": "3レベル"
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 10.953,
+    "directory": "02_stdio"
+  },
+  {
+    "mode": "03_http",
+    "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "glossary_search_glossary",
+        "args": {
+          "query": "3レベル"
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 12.873,
+    "directory": "03_http"
+  },
+  {
+    "mode": "04_brief",
+    "question": "第2回では何を学びますか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "glossary_get_lecture_summary",
+        "args": {
+          "lecture": 2
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 12.984,
+    "directory": "04_brief"
+  },
+  {
+    "mode": "05_detailed",
+    "question": "第2回では何を学びますか？",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "glossary_get_lecture_summary",
+        "args": {
+          "lecture": 2
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 13.132,
+    "directory": "05_detailed"
+  },
+  {
+    "mode": "06_fetch",
+    "question": "https://modelcontextprotocol.io/docs/getting-started/intro.md の冒頭を日本語で3行に要約して",
+    "status": "success",
+    "tool_calls": [
+      {
+        "kind": "call",
+        "name": "fetch_fetch",
+        "args": {
+          "url": "https://modelcontextprotocol.io/docs/getting-started/intro.md",
+          "max_length": 5000,
+          "start_index": 0,
+          "raw": false
+        }
+      }
+    ],
+    "requests": 2,
+    "cli_attempts": 2,
+    "elapsed_seconds": 17.589,
+    "directory": "06_fetch"
+  }
+]

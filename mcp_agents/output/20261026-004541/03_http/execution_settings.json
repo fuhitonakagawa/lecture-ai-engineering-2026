@@ -1,0 +1,23 @@
+{
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "timeout_seconds": 180,
+  "max_requests": 6,
+  "max_attempts": 2,
+  "retry_delay_seconds": 5,
+  "case": {
+    "name": "03_http",
+    "mode": "mcp",
+    "config_file": "config/http.json",
+    "style": "brief",
+    "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？"
+  },
+  "mcp_timeout_seconds": 30,
+  "connection": {
+    "mcpServers": {
+      "glossary": {
+        "url": "http://127.0.0.1:8767/mcp"
+      }
+    }
+  }
+}

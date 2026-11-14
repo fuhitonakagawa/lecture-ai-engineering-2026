@@ -1,0 +1,17 @@
+{
+  "mode": "02_stdio",
+  "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+  "status": "success",
+  "tool_calls": [
+    {
+      "kind": "call",
+      "name": "glossary_search_glossary",
+      "args": {
+        "query": "3レベル"
+      }
+    }
+  ],
+  "requests": 2,
+  "cli_attempts": 2,
+  "elapsed_seconds": 10.953
+}

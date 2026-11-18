@@ -1,0 +1,17 @@
+{
+  "mode": "04_brief",
+  "question": "第2回では何を学びますか？",
+  "status": "success",
+  "tool_calls": [
+    {
+      "kind": "call",
+      "name": "glossary_get_lecture_summary",
+      "args": {
+        "lecture": 2
+      }
+    }
+  ],
+  "requests": 2,
+  "cli_attempts": 2,
+  "elapsed_seconds": 9.992
+}

@@ -1,0 +1,20 @@
+{
+  "mode": "06_fetch",
+  "question": "https://modelcontextprotocol.io/docs/getting-started/intro.md の冒頭を日本語で3行に要約して",
+  "status": "success",
+  "tool_calls": [
+    {
+      "kind": "call",
+      "name": "fetch_fetch",
+      "args": {
+        "url": "https://modelcontextprotocol.io/docs/getting-started/intro.md",
+        "max_length": 5000,
+        "start_index": 0,
+        "raw": false
+      }
+    }
+  ],
+  "requests": 2,
+  "cli_attempts": 2,
+  "elapsed_seconds": 17.589
+}

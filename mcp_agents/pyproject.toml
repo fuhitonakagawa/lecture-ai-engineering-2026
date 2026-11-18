@@ -1,0 +1,22 @@
+[project]
+name = "aie2026-mcp-agents"
+version = "0.1.0"
+description = "Codex CLIとMCPによる学習支援ツールのstdio・HTTP比較"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mcp==2.3.0",
+    "mcp-server-fetch==2026.10.24",
+    "pydantic-ai-slim[mcp]==2.57.0",
+    "python-dotenv==1.2.4",
+    "structlog==26.1.0",
+    "uvicorn==0.54.0",
+]
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning:pydantic_graph"]

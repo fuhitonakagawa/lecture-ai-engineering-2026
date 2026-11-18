@@ -1,0 +1,14 @@
+[
+  {
+    "kind": "call",
+    "name": "search_glossary",
+    "args": {
+      "query": "3レベル"
+    }
+  },
+  {
+    "kind": "return",
+    "name": "search_glossary",
+    "content": "[{\"term\": \"宿題の3レベル\", \"lecture\": 1, \"definition\": \"AIE2026の宿題の構成。「基礎（講義内容の確認）」「実装（自分でコードを書く）」「発展（調査や試行）」の3段階があり、どれか1つに取り組めばその回の宿題は完了。原則として採点はしない。\", \"related\": [\"answer-md\"]}]"
+  }
+]

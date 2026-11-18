@@ -1,0 +1,63 @@
+[
+  {
+    "request": 1,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 39546,
+          "cached_input_tokens": 19584,
+          "output_tokens": 101,
+          "reasoning_output_tokens": 26
+        },
+        "elapsed_seconds": 5.862
+      }
+    ],
+    "elapsed_seconds": 5.862,
+    "usage": {
+      "input_tokens": 39546,
+      "cached_input_tokens": 19584,
+      "output_tokens": 101,
+      "reasoning_output_tokens": 26
+    },
+    "decision": {
+      "answer": "",
+      "tool_calls": [
+        {
+          "name": "glossary_search_glossary",
+          "arguments": "{\"query\":\"3レベル\"}"
+        }
+      ]
+    }
+  },
+  {
+    "request": 2,
+    "status": "success",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "success",
+        "usage": {
+          "input_tokens": 17828,
+          "cached_input_tokens": 9856,
+          "output_tokens": 112,
+          "reasoning_output_tokens": 0
+        },
+        "elapsed_seconds": 4.64
+      }
+    ],
+    "elapsed_seconds": 4.64,
+    "usage": {
+      "input_tokens": 17828,
+      "cached_input_tokens": 9856,
+      "output_tokens": 112,
+      "reasoning_output_tokens": 0
+    },
+    "decision": {
+      "answer": "第1回の宿題にある「3レベル」は、次の3段階の課題構成です。どれか1つに取り組めば、その回の宿題は完了です。原則として採点はありません。\n\n- **基礎**：講義内容の確認\n- **実装**：自分でコードを書く\n- **発展**：調査や試行をする",
+      "tool_calls": []
+    }
+  }
+]

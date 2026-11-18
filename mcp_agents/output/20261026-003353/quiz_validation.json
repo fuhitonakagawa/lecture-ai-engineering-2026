@@ -1,0 +1,156 @@
+{
+  "kind": "mcp_quiz_validation",
+  "real_llm_used": false,
+  "transport": "stdio",
+  "protocol_cases": [
+    {
+      "case": "valid",
+      "arguments": {
+        "lecture": 2
+      },
+      "is_error": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"lecture\": 2, \"term\": \"事前学習\", \"question\": \"「事前学習」とは何ですか？ 自分の言葉で説明してください。\", \"answer\": \"大量の汎用テキストで、次のトークンを予測するようにモデルを学習させる最初の段階。言語の知識や一般的な常識の多くはここで身につく。\"}",
+          "annotations": null,
+          "meta": null
+        }
+      ]
+    },
+    {
+      "case": "missing",
+      "arguments": {
+        "lecture": 99
+      },
+      "is_error": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "第99回の用語がありません。用意されている回: 1, 2, 3, 5。別の回を指定してください。",
+          "annotations": null,
+          "meta": null
+        }
+      ]
+    },
+    {
+      "case": "zero",
+      "arguments": {
+        "lecture": 0
+      },
+      "is_error": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "第0回の用語がありません。用意されている回: 1, 2, 3, 5。別の回を指定してください。",
+          "annotations": null,
+          "meta": null
+        }
+      ]
+    },
+    {
+      "case": "negative",
+      "arguments": {
+        "lecture": -1
+      },
+      "is_error": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "第-1回の用語がありません。用意されている回: 1, 2, 3, 5。別の回を指定してください。",
+          "annotations": null,
+          "meta": null
+        }
+      ]
+    },
+    {
+      "case": "invalid_type",
+      "arguments": {
+        "lecture": "invalid"
+      },
+      "is_error": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error executing tool make_quiz: 1 validation error for make_quizArguments\nlecture\n  Input should be a valid integer [type=int_type, input_value='invalid', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/int_type",
+          "annotations": null,
+          "meta": null
+        }
+      ]
+    },
+    {
+      "case": "boolean",
+      "arguments": {
+        "lecture": true
+      },
+      "is_error": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error executing tool make_quiz: 1 validation error for make_quizArguments\nlecture\n  Input should be a valid integer [type=int_type, input_value=True, input_type=bool]\n    For further information visit https://errors.pydantic.dev/2.14/v/int_type",
+          "annotations": null,
+          "meta": null
+        }
+      ]
+    }
+  ],
+  "model_cases": [
+    {
+      "case": "lecture_2",
+      "model": "TestModel",
+      "real_llm_used": false,
+      "trace": [
+        {
+          "kind": "call",
+          "name": "glossary_make_quiz",
+          "args": {
+            "lecture": 2
+          }
+        },
+        {
+          "kind": "return",
+          "name": "glossary_make_quiz",
+          "content": "{\"lecture\": 2, \"term\": \"事前学習\", \"question\": \"「事前学習」とは何ですか？ 自分の言葉で説明してください。\", \"answer\": \"大量の汎用テキストで、次のトークンを予測するようにモデルを学習させる最初の段階。言語の知識や一般的な常識の多くはここで身につく。\"}"
+        }
+      ]
+    },
+    {
+      "case": "lecture_99",
+      "model": "TestModel",
+      "real_llm_used": false,
+      "trace": [
+        {
+          "kind": "call",
+          "name": "glossary_make_quiz",
+          "args": {
+            "lecture": 99
+          }
+        },
+        {
+          "kind": "return",
+          "name": "glossary_make_quiz",
+          "content": "第99回の用語がありません。用意されている回: 1, 2, 3, 5。別の回を指定してください。"
+        }
+      ]
+    },
+    {
+      "case": "invalid_type",
+      "model": "FunctionModel",
+      "real_llm_used": false,
+      "trace": [
+        {
+          "kind": "call",
+          "name": "glossary_make_quiz",
+          "args": {
+            "lecture": "invalid"
+          }
+        },
+        {
+          "kind": "retry",
+          "name": "glossary_make_quiz",
+          "content": "Error executing tool make_quiz: 1 validation error for make_quizArguments\nlecture\n  Input should be a valid integer [type=int_type, input_value='invalid', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/int_type"
+        }
+      ]
+    }
+  ]
+}
